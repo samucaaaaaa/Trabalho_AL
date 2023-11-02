@@ -11,15 +11,13 @@ with st.container():
     st.title("Trasformações Lineares com imagens")
     st.write("Aqui estão algumas transformações que podemos fazer com as imagens")
     st.write("Quer acessar o projeto pelo GitHub? [Clique aqui](https://github.com/samucaaaaaa/Trabalho_AL)")
+    if st.button("Clique para ir no projeto do GitHub :)"):
+        site_url = "https://github.com/samucaaaaaa/Trabalho_AL"
+        st.write(f'<meta http-equiv="refresh" content="0; url={site_url}" />', unsafe_allow_html=True)
 
 with st.container():
     st.write("---")
-
-if st.button("Clique para ir no projeto do GitHub :)"):
-    site_url = "https://github.com/samucaaaaaa/Trabalho_AL"
-    st.write(f'<meta http-equiv="refresh" content="0; url={site_url}" />', unsafe_allow_html=True)
-
-if st.button("Alterar Imagem"):
-    escurecer_imagem("yuri.png", 70)
-
-st.image('yuri.png') 
+    st.write("Clique no botão para alterar a imagem!")
+    st.image('yuri.png') 
+    if st.button("Escurecer Imagem"):
+        escurecer_imagem("yuri.png", 70)
