@@ -19,3 +19,11 @@ def imagem_preto_branco(caminho_imagem):
 
     resultado = Image.fromarray(imagem_array)
     return resultado.save("imagem_resultado.png")
+
+def rotacior_90(caminho_imagem):
+    imagem = Image.open(caminho_imagem)
+    imagem_array = np.array(imagem)
+
+    imagem_array = np.transpose(imagem_array, (1,0,2))
+    resultado = Image.fromarray(imagem_array)
+    return resultado.save("teste_img.png")
