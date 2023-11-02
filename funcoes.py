@@ -26,7 +26,7 @@ def rotacior_90(caminho_imagem):
 
     imagem_array = np.transpose(imagem_array, (1,0,2))
     resultado = Image.fromarray(imagem_array)
-    return resultado.save("teste_img.png")
+    return resultado.save("imagem_resultado.png")
 
 def filtro_quente(caminho_imagem):
     imagem = Image.open(caminho_imagem)
@@ -37,4 +37,4 @@ def filtro_quente(caminho_imagem):
     imagem_array[:,:,2] = np.clip(imagem_array[:,:,2] + -10, 0, 255).astype(np.uint8)
 
     resultado = Image.fromarray(imagem_array)
-    return resultado.save("teste_img.png")
+    return resultado.save("imagem_resultado.png")
