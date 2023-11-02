@@ -1,4 +1,5 @@
 import streamlit as st
+from funcoes import escurecer_imagem
 
 st.set_page_config(page_title="Trabalho de Álgebra Linear")
 
@@ -17,3 +18,8 @@ with st.container():
 if st.button("Clique para ir no projeto do GitHub :)"):
     site_url = "https://github.com/samucaaaaaa/Trabalho_AL"
     st.write(f'<meta http-equiv="refresh" content="0; url={site_url}" />', unsafe_allow_html=True)
+
+if st.button("Alterar Imagem"):
+    escurecer_imagem("yuri.png", 70)
+
+st.image('yuri.png') 
