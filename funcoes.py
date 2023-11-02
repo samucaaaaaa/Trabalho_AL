@@ -10,3 +10,12 @@ def escurecer_imagem(caminho_imagem, pct_escurecimento):
 
     resultado = Image.fromarray(imagem_array)
     return resultado.save("imagem_resultado.png")
+
+def imagem_preto_branco(caminho_imagem):
+    imagem = Image.open(caminho_imagem)
+    imagem_array = np.array(imagem)
+    
+    imagem_array = np.dot(imagem_array[..., :3], [0.3, 0.59, 0.11])
+
+    resultado = Image.fromarray(imagem_array)
+    return resultado.save("imagem_resultado.png")
