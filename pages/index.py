@@ -2,6 +2,9 @@ import streamlit as st
 
 st.set_page_config(page_title="Trabalho de Álgebra Linear")
 
+with open("styles.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True) 
+
 with st.container():
     st.subheader("Meu primeiro site com o Streamlit")
     st.title("Trasformações Lineares com imagens")
@@ -10,3 +13,7 @@ with st.container():
 
 with st.container():
     st.write("---")
+
+if st.button("Clique para ir no projeto do GitHub :)"):
+    site_url = "https://github.com/samucaaaaaa/Trabalho_AL"
+    st.write(f'<meta http-equiv="refresh" content="0; url={site_url}" />', unsafe_allow_html=True)

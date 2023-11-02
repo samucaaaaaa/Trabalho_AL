@@ -1,0 +1,15 @@
+.stButton > button{
+    background-color: rgb(196, 20, 196);
+    color: white;
+}
+
+.stButton > button:hover{
+    background-color: rgb(196, 20, 196);
+    color: white;
+    border-color: rgb(98, 5, 98);
+}
+
+h1{
+    color: rgb(4, 4, 80);
+    white-space: nowrap;
+}
