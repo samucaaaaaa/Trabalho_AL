@@ -38,3 +38,16 @@ def filtro_quente(caminho_imagem):
 
     resultado = Image.fromarray(imagem_array)
     return resultado.save("imagem_resultado.png")
+
+def inverte_imagem(caminho_imagem):
+    
+    imagem = Image.open(caminho_imagem)
+    imagem_array = np.array(imagem)
+
+    matriz_transf = np.array([[-1, 0, imagem_array.shape[1]], [0, 1, 0], [0, 0, 1]])
+
+    imagem_invertida_array = np.matmul(matriz_transf, imagem_array)
+
+    imagem_invertida = Image.fromarray(imagem_invertida_array)
+
+    return imagem_invertida.save("imagem_resultado.png")
