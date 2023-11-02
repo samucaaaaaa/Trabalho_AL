@@ -1,5 +1,6 @@
 import numpy as np
 from PIL import Image
+import cv2
 
 def escurecer_imagem(caminho_imagem, pct_escurecimento):
     imagem = Image.open(caminho_imagem)
@@ -51,3 +52,11 @@ def inverte_imagem(caminho_imagem):
     imagem_invertida = Image.fromarray(imagem_invertida_array)
 
     return imagem_invertida.save("imagem_resultado.png")
+
+def filtro_blur(caminho_imagem):
+    imagem = cv2.imread(caminho_imagem)
+    matriz_filtro = np.ones((3, 3), np.float32) / 9
+
+    imagem_borrada = cv2.filter2D(imagem, -1, matriz_filtro)
+
+    return cv2.imwrite("imagem_resulatado.jpg", imagem_borrada)
