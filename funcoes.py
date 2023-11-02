@@ -55,7 +55,7 @@ def inverte_imagem(caminho_imagem):
 
 def filtro_blur(caminho_imagem):
     imagem = cv2.imread(caminho_imagem)
-    matriz_filtro = np.ones((3, 3), np.float32) / 9
+    matriz_filtro = np.ones((3, 3)) / 9
 
     imagem_borrada = cv2.filter2D(imagem, -1, matriz_filtro)
 
