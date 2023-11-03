@@ -36,6 +36,9 @@ def filtro_quente(caminho_imagem):
     imagem_array[:,:,1] = np.clip(imagem_array[:,:,1] + -10, 0, 255).astype(np.uint8)
     imagem_array[:,:,2] = np.clip(imagem_array[:,:,2] + -10, 0, 255).astype(np.uint8)
 
+    # imagem_array[:,:,0] = np.clip(imagem_array[:,:,2] * 1.2, 0, 255)
+    # imagem_array[:,:,2] = np.clip(imagem_array[:,:,0] * 0.8, 0, 255)
+
     resultado = Image.fromarray(imagem_array)
     return resultado.save("imagem_resultado.png")
 
@@ -87,9 +90,10 @@ def filtro_frio(caminho_imagem):
     imagem = Image.open(caminho_imagem)
     imagem_array = np.array(imagem)
 
-    imagem_array[:,:,0] = np.clip(imagem_array[:,:,0] - 10, 0, 255).astype(np.uint8)
-    imagem_array[:,:,1] = np.clip(imagem_array[:,:,1] - 10, 0, 255).astype(np.uint8)
-    imagem_array[:,:,2] = np.clip(imagem_array[:,:,2], 0, 255).astype(np.uint8)
+    imagem_array = np.array(imagem_array)
+
+    imagem_array[:,:,2] = np.clip(imagem_array[:,:,2] * 1.2, 0, 255)
+    imagem_array[:,:,0] = np.clip(imagem_array[:,:,0] * 0.8, 0, 255)
 
     imagem_filtrada = Image.fromarray(imagem_array)
 
