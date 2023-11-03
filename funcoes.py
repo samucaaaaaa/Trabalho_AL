@@ -81,4 +81,16 @@ def repete_imagem(caminho_imagem, num_repeticoes):
     imagem_repeticoes_array = np.concatenate([imagem_array] * num_repeticoes, axis=1)
     imagem_repeticoes = Image.fromarray(imagem_repeticoes_array)
 
-    return imagem_repeticoes.save('imagem_resultado.jpg')
+    return imagem_repeticoes.save("imagem_resultado.png")
+
+def filtro_frio(caminho_imagem):
+    imagem = Image.open(caminho_imagem)
+    imagem_array = np.array(imagem)
+
+    imagem_array[:,:,0] = np.clip(imagem_array[:,:,0] - 10, 0, 255).astype(np.uint8)
+    imagem_array[:,:,1] = np.clip(imagem_array[:,:,1] - 10, 0, 255).astype(np.uint8)
+    imagem_array[:,:,2] = np.clip(imagem_array[:,:,2], 0, 255).astype(np.uint8)
+
+    imagem_filtrada = Image.fromarray(imagem_array)
+
+    return imagem_filtrada.save("imagem_resultado.png")
