@@ -71,22 +71,14 @@ def filtro_amarelo(caminho_da_imagem):
 
     return resultado.save("imagem_resultado.png")
 
-def duplica_imagem(caminho_imagem):
-    image = Image.open(caminho_imagem)
+def repete_imagem(caminho_imagem, num_repeticoes):
+    imagem = Image.open(caminho_imagem)
     
-    image_array = np.array(image)
+    imagem_array = np.array(imagem)
 
-    # Remove o canal alfa da imagem
-    image_array = image_array[:, :, :3]
+    imagem_array = imagem_array[:, :, :3]
 
-    # Cria uma nova imagem com o dobro da largura
-    new_image_array = np.concatenate((image_array, image_array), axis=1)
+    imagem_repeticoes_array = np.concatenate([imagem_array] * num_repeticoes, axis=1)
+    imagem_repeticoes = Image.fromarray(imagem_repeticoes_array)
 
-    # Converte o array de volta para uma imagem
-    new_image = Image.fromarray(new_image_array)
-
-    # Salva a imagem repetida
-    new_image.save('imagem_resultado.jpg')
-
-    # Retorna a imagem repetida
-    return new_image
+    return imagem_repeticoes.save('imagem_resultado.jpg')
