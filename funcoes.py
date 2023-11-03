@@ -9,8 +9,7 @@ def escurecer_imagem(caminho_imagem, pct_escurecimento):
     for canal_cor in range(0,3):
         imagem_array[:,:,canal_cor] = imagem_array[:,:,canal_cor] * ((100-pct_escurecimento)/100)
 
-    resultado = Image.fromarray(imagem_array)
-    return resultado.show("imagem_resultado.png")
+    return Image.fromarray(imagem_array)
 
 def imagem_preto_branco(caminho_imagem):
     imagem = Image.open(caminho_imagem)
