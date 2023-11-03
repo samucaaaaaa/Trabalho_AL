@@ -1,15 +1,32 @@
-.stButton > button{
-    background-color: rgb(196, 20, 196);
+.stButton > button {
+    background-color: #007ACC; /* Azul do Visual Studio Code */
     color: white;
+    border: none;
+    
+   
+padding: 8px 16px; /* Tamanho do botão ajustado */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Adicionada a transição para a cor do texto */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 10px; /* Distância do fundo da janela */
+    right: 10px; /* Distância da borda direita da janela */
 }
 
-.stButton > button:hover{
-    background-color: rgb(196, 20, 196);
-    color: white;
-    border-color: rgb(98, 5, 98);
+.stButton > button:hover {
+    background-color: #005F91; /* Tom mais escuro de azul ao passar o mouse */
 }
 
-h1{
-    color: rgb(4, 4, 80);
-    white-space: nowrap;
+h1 {
+    
+   
+    color: rgb(103, 100, 100)
+        white-space: nowrap;
+        text-align: center;
+        
+       
+    border-bottom: 2px solid #595757; /* Adiciona uma linha de borda semelhante à cor do botão */
+        padding-bottom: 10px; /* Adiciona espaço entre o título e a borda */
+        margin-bottom: 20px; /* Adiciona espaço abaixo do título */
 }
