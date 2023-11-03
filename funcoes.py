@@ -57,3 +57,25 @@ def filtro_blur(caminho_imagem):
     imagem_borrada = cv2.filter2D(imagem, -1, matriz_filtro)
 
     return cv2.imwrite("imagem_resulatado.jpg", imagem_borrada)
+
+def duplica_imagem(caminho_imagem):
+    image = Image.open(caminho_imagem)
+    
+    image_array = np.array(image)
+
+    # Remove o canal alfa da imagem
+    image_array = image_array[:, :, :3]
+
+    # Cria uma nova imagem com o dobro da largura
+    new_image_array = np.concatenate((image_array, image_array), axis=1)
+
+    # Converte o array de volta para uma imagem
+    new_image = Image.fromarray(new_image_array)
+
+    # Salva a imagem repetida
+    new_image.save('imagem_resultado.jpg')
+
+    # Retorna a imagem repetida
+    return new_image
+
+duplica_imagem("yuri.png")
