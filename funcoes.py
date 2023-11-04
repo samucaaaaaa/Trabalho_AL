@@ -118,3 +118,23 @@ def filtro_sepia(caminho_imagem):
     imagem = Image.fromarray(imagem_array)
 
     return imagem.save("imagem_resultado.png")
+
+def redimensionar_imagem(caminho_imagem, largura, altura):
+    # Carrega a imagem do caminho especificado
+    imagem = cv2.imread(caminho_imagem)
+
+    if imagem is None:
+        print("Não foi possível carregar a imagem. Verifique o caminho.")
+        return None
+
+    # Obtém as dimensões da imagem original
+    altura_original, largura_original = imagem.shape[:2]
+
+    # Cria uma matriz de transformação linear
+    matriz_transformacao = np.array([[largura / largura_original, 0, 0],
+                                     [0, altura / altura_original, 0]], dtype=np.float32)
+
+    # Aplica a transformação linear aos pixels da imagem
+    imagem_redimensionada = cv2.warpAffine(imagem, matriz_transformacao, (largura, altura))
+
+    return imagem_redimensionada
