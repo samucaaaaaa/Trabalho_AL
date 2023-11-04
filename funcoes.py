@@ -105,16 +105,12 @@ def filtro_sepia(caminho_imagem):
 
     vermelho = imagem_array[:,:,0]
     verde = imagem_array[:,:,1]
-    azul= imagem_array[:,:,2]
+    azul = imagem_array[:,:,2]
     
-    sepia_vermelho= np.clip(0.393 * vermelho+ 0.769 * verde + 0.189 * azul, 0, 255)
-    sepia_verde= np.clip(0.349 * vermelho+ 0.686 * verde + 0.168 * azul, 0, 255)
-    sepia_azul= np.clip(0.272 * vermelho+ 0.534 * verde + 0.131 * azul, 0, 255)
+    imagem_array[:,:,0] = np.clip(0.393 * vermelho + 0.769 * verde + 0.189 * azul, 0, 255)
+    imagem_array[:,:,1] = np.clip(0.349 * vermelho + 0.686 * verde + 0.168 * azul, 0, 255)
+    imagem_array[:,:,2] = np.clip(0.272 * vermelho + 0.534 * verde + 0.131 * azul, 0, 255)
 
-    imagem_array[:,:,0] = sepia_vermelho
-    imagem_array[:,:,1] = sepia_verde
-    imagem_array[:,:,2] = sepia_azul
-    
     imagem = Image.fromarray(imagem_array)
 
     return imagem.save("imagem_resultado.png")
