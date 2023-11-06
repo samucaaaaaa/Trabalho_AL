@@ -19,9 +19,9 @@ with st.container():
 with st.container():
     st.write("---")
     st.write("Clique no botão para alterar a imagem!")
-    st.image('yuri.png') 
+    st.image("imagens/yuri.png") 
     if st.button("Escurecer Imagem"):
-        escurecer_imagem("yuri.png", 70)
+        escurecer_imagem("imagens/yuri.png", 70)
 
 
 # Usa st.file_uploader para permitir o upload de imagens
@@ -34,10 +34,10 @@ if uploaded_file is not None:
 
     # Salva a imagem original em um arquivo temporário
     caminho_da_imagem_original = "temp_imagem_original.png"
-    imagem_original.save(caminho_da_imagem_original, format="PNG")
-    st.image(imagem_original, caption='Imagem Original', use_column_width=True)
+    st.image(imagem_original, caption="Imagem Original", use_column_width=True)
 
     imagem_alterada = escurecer_imagem(caminho_da_imagem_original, 30)
     caminho_da_imagem_alterada = "temp_imagem_alterada.png"
     imagem_alterada.save(caminho_da_imagem_alterada, format="PNG")
-    st.image(imagem_alterada, caption='Imagem Alterada', use_column_width=True)
+    st.image(imagem_alterada, caption="Imagem Alterada", use_column_width=True)
+    # TODO: Criar um botão para download, tirando o download automático
