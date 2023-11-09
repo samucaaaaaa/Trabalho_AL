@@ -68,19 +68,6 @@ def filtro_blur(caminho_imagem):
 
     return cv2.imwrite("imagem_resulatado.jpg", imagem_borrada)
 
-def filtro_amarelo(caminho_da_imagem):
-    imagem = Image.open(caminho_da_imagem)
-    imagem_array = np.array(imagem)
-
-    filtro_amarelo = np.array([1.5, 1.2, 0.8])
-    imagem_transformada = imagem_array * filtro_amarelo
-
-    imagem_transformada = np.clip(imagem_transformada, 0, 255)
-
-    resultado = Image.fromarray(imagem_transformada.astype("uint8"))
-
-    return resultado.save("imagem_resultado.png")
-
 def repete_imagem(caminho_imagem, num_repeticoes):
     imagem = Image.open(caminho_imagem)
     
@@ -106,22 +93,6 @@ def filtro_frio(caminho_imagem):
 
     return imagem_filtrada.save("imagem_resultado.png")
 
-def filtro_sepia(caminho_imagem):
-    imagem = Image.open(caminho_imagem)
-    imagem_array = np.array(imagem)
-
-    vermelho = imagem_array[:,:,0]
-    verde = imagem_array[:,:,1]
-    azul = imagem_array[:,:,2]
-    
-    imagem_array[:,:,0] = np.clip(0.393 * vermelho + 0.769 * verde + 0.189 * azul, 0, 255)
-    imagem_array[:,:,1] = np.clip(0.349 * vermelho + 0.686 * verde + 0.168 * azul, 0, 255)
-    imagem_array[:,:,2] = np.clip(0.272 * vermelho + 0.534 * verde + 0.131 * azul, 0, 255)
-
-    imagem = Image.fromarray(imagem_array)
-
-    return imagem.save("imagem_resultado.png")
-
 def redimensionar_imagem(caminho_imagem, altura, largura):
     # Carrega a imagem do caminho especificado
     imagem = cv2.imread(caminho_imagem)
@@ -141,3 +112,45 @@ def redimensionar_imagem(caminho_imagem, altura, largura):
     imagem_redimensionada = cv2.warpAffine(imagem, matriz_transformacao, (largura, altura))
 
     return imagem_redimensionada
+
+def filtro_cor(caminho_da_imagem, cor):
+    if cor.lower() == "vermelho":
+        proporcoes = [1.5,1,1]
+    elif cor.lower() == "verde":
+        proporcoes = [1,1.5,1]
+    elif cor.lower() == "azul":
+        proporcoes = [1,1,1.5]
+    elif cor.lower() == "roxo":
+        proporcoes = [1.5,1,1.5]
+    elif cor.lower() == "amarelo":
+        proporcoes = [1.5, 1.2, 0.8]
+    elif cor.lower() == "agua":
+        proporcoes = [1,1.5,1.5]
+
+    imagem = Image.open(caminho_da_imagem)
+    imagem_array = np.array(imagem)
+
+    filtro = np.array(proporcoes)
+    imagem_transformada = imagem_array * filtro
+
+    imagem_transformada = np.clip(imagem_transformada, 0, 255)
+
+    resultado = Image.fromarray(imagem_transformada.astype("uint8"))
+
+    return resultado.save("imagem_resultado.png")
+
+def filtro_sepia(caminho_imagem):
+    imagem = Image.open(caminho_imagem)
+    imagem_array = np.array(imagem)
+    
+    sepia_filter = np.array([[.393, .769, .189],
+                            [.349, .686, .168],
+                            [.272, .534, .131]])
+    
+    imagem = Image.fromarray(imagem_array)
+
+    imagem_transformada = np.dot(imagem,sepia_filter.T)
+    imagem_transformada = np.clip(resultado,0,255)
+    resultado = Image.fromarray(imagem_transformada.astype("uint8"))
+
+    return resultado.save("imagem_resultado.png")
