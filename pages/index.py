@@ -29,8 +29,6 @@ with st.container():
     if st.button("Imagem preto e branco"):
         imagem_preto_branco("imagens/yuri.png", "show")    
 
-
-
 with st.container():
     # Usa st.file_uploader para permitir o upload de imagens
     uploaded_file = st.file_uploader("Faça o upload de uma imagem", type=["jpg", "png", "jpeg"])
@@ -49,3 +47,5 @@ with st.container():
         imagem_alterada.save(caminho_da_imagem_alterada, format="PNG")
         st.image(imagem_alterada, caption="Imagem Alterada", use_column_width=True)
         # TODO: Criar um botão para download, tirando o download automático
+
+        
