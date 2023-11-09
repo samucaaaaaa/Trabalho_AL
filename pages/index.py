@@ -69,8 +69,7 @@ with st.container():
         st.image("imagem_resultado.png")  
 
     if transformacao == "Redimensionar imagem":
-        imagem_yuri_array = cv2.imread("imagens/yuri.png")
-        redimensionar_imagem(imagem_yuri_array, 20, 70)
+        redimensionar_imagem(imagem_yuri_array, 200, 700)
         st.image("imagem_resultado.png")  
 
     if transformacao == "Filtrar cor":
