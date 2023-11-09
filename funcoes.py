@@ -13,12 +13,14 @@ def escurecer_imagem(imagem_array, pct_escurecimento):
 def imagem_preto_branco(imagem_array):
 
     imagem_array = np.dot(imagem_array[..., :3], [0.3, 0.59, 0.11])
+    
     resultado = Image.fromarray(imagem_array.astype("uint8"))
     return resultado.save("imagem_resultado.png")
 
 def rotaciona_90(imagem_array):
 
     imagem_array = np.transpose(imagem_array, (1,0,2))
+    
     resultado = Image.fromarray(imagem_array.astype("uint8"))
     return resultado.save("imagem_resultado.png")
 
@@ -39,11 +41,10 @@ def inverte_imagem(imagem_array):
     imagem_invertida_array = np.flip(imagem_array, 1)
 
     imagem_invertida = Image.fromarray(imagem_invertida_array.astype("uint8"))
-
     return imagem_invertida.save("imagem_resultado.png")
 
-def filtro_blur(caminho_da_imagem):
-    imagem = cv2.imread(caminho_da_imagem)
+def filtro_blur(imagem):
+
     matriz_filtro = np.ones((3, 3)) / 9
 
     imagem_borrada = cv2.filter2D(imagem, -1, matriz_filtro)
@@ -53,10 +54,9 @@ def filtro_blur(caminho_da_imagem):
 def repete_imagem(imagem_array, num_repeticoes):
 
     imagem_array = imagem_array[:, :, :3]
-
     imagem_repeticoes_array = np.concatenate([imagem_array] * num_repeticoes, axis=1)
+    
     imagem_repeticoes = Image.fromarray(imagem_repeticoes_array)
-
     return imagem_repeticoes.save("imagem_resultado.png")
 
 def filtro_frio(imagem_array):
@@ -65,12 +65,9 @@ def filtro_frio(imagem_array):
     imagem_array[:,:,0] = np.clip(imagem_array[:,:,0] * 0.8, 0, 255)
 
     imagem_filtrada = Image.fromarray(imagem_array.astype("uint8"))
-
     return imagem_filtrada.save("imagem_resultado.png")
 
-def redimensionar_imagem(caminho_da_imagem, altura, largura):
-    # Carrega a imagem do caminho especificado
-    imagem = cv2.imread(caminho_da_imagem)
+def redimensionar_imagem(imagem, altura, largura):
 
     if imagem is None:
         print("Não foi possível carregar a imagem. Verifique o caminho.")
@@ -80,12 +77,10 @@ def redimensionar_imagem(caminho_da_imagem, altura, largura):
     altura_original, largura_original = imagem.shape[:2]
 
     # Cria uma matriz de transformação linear
-    matriz_transformacao = np.array([[largura / largura_original, 0, 0],
-                                     [0, altura / altura_original, 0]], dtype=np.float32)
+    matriz_transformacao = np.array([[largura / largura_original, 0, 0], [0, altura / altura_original, 0]], dtype=np.float32)
 
     # Aplica a transformação linear aos pixels da imagem
     imagem_redimensionada = cv2.warpAffine(imagem, matriz_transformacao, (largura, altura))
-
     return imagem_redimensionada
 
 def filtro_cor(imagem_array, cor):
@@ -104,26 +99,23 @@ def filtro_cor(imagem_array, cor):
         proporcoes = [1,1.5,1.5]
 
     filtro = np.array(proporcoes)
+    
     imagem_transformada = imagem_array * filtro
-
     imagem_transformada = np.clip(imagem_transformada, 0, 255)
 
     resultado = Image.fromarray(imagem_transformada.astype("uint8"))
-
     return resultado.save("imagem_resultado.png")
 
 def filtro_sepia(imagem_array):
     
-    sepia_filter = np.array([[.393, .769, .189],
-                            [.349, .686, .168],
-                            [.272, .534, .131]])
+    sepia_filter = np.array([[.393, .769, .189], [.349, .686, .168], [.272, .534, .131]])
     
     imagem = Image.fromarray(imagem_array.astype("uint8"))
 
     imagem_transformada = np.dot(imagem,sepia_filter.T)
     imagem_transformada = np.clip(resultado,0,255)
+    
     resultado = Image.fromarray(imagem_transformada.astype("uint8"))
-
     return resultado.save("imagem_resultado.png")
 
 def cor_negativa(imagem_array):
@@ -133,5 +125,4 @@ def cor_negativa(imagem_array):
 
     
     resultado = Image.fromarray(imagem_array.astype("uint8"))
-
     return resultado.save("imagem_resultado.png")
