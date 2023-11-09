@@ -7,19 +7,19 @@ def escurecer_imagem(imagem_array, pct_escurecimento):
     for canal_cor in range(0,3):
         imagem_array[:,:,canal_cor] = imagem_array[:,:,canal_cor] * ((100-pct_escurecimento)/100)
 
-    resultado = Image.fromarray(imagem_array)
+    resultado = Image.fromarray(imagem_array.astype("uint8"))
     return resultado.save("imagem_resultado.png")
 
 def imagem_preto_branco(imagem_array):
 
     imagem_array = np.dot(imagem_array[..., :3], [0.3, 0.59, 0.11])
-    resultado = Image.fromarray(imagem_array)
+    resultado = Image.fromarray(imagem_array.astype("uint8"))
     return resultado.save("imagem_resultado.png")
-    
+
 def rotacior_90(imagem_array):
 
     imagem_array = np.transpose(imagem_array, (1,0,2))
-    resultado = Image.fromarray(imagem_array)
+    resultado = Image.fromarray(imagem_array.astype("uint8"))
     return resultado.save("imagem_resultado.png")
 
 def filtro_quente(imagem_array):
@@ -31,14 +31,14 @@ def filtro_quente(imagem_array):
     # imagem_array[:,:,0] = np.clip(imagem_array[:,:,2] * 1.2, 0, 255)
     # imagem_array[:,:,2] = np.clip(imagem_array[:,:,0] * 0.8, 0, 255)
 
-    resultado = Image.fromarray(imagem_array)
+    resultado = Image.fromarray(imagem_array.astype("uint8"))
     return resultado.save("imagem_resultado.png")
 
 def inverte_imagem(imagem_array):
     
     imagem_invertida_array = np.flip(imagem_array, 1)
 
-    imagem_invertida = Image.fromarray(imagem_invertida_array)
+    imagem_invertida = Image.fromarray(imagem_invertida_array.astype("uint8"))
 
     return imagem_invertida.save("imagem_resultado.png")
 
@@ -48,7 +48,7 @@ def filtro_blur(caminho_da_imagem):
 
     imagem_borrada = cv2.filter2D(imagem, -1, matriz_filtro)
 
-    return cv2.imwrite("imagem_resulatado.jpg", imagem_borrada)
+    return cv2.imwrite("imagem_resulatado.png", imagem_borrada)
 
 def repete_imagem(imagem_array, num_repeticoes):
 
@@ -64,7 +64,7 @@ def filtro_frio(imagem_array):
     imagem_array[:,:,2] = np.clip(imagem_array[:,:,2] * 1.2, 0, 255)
     imagem_array[:,:,0] = np.clip(imagem_array[:,:,0] * 0.8, 0, 255)
 
-    imagem_filtrada = Image.fromarray(imagem_array)
+    imagem_filtrada = Image.fromarray(imagem_array.astype("uint8"))
 
     return imagem_filtrada.save("imagem_resultado.png")
 
@@ -118,7 +118,7 @@ def filtro_sepia(imagem_array):
                             [.349, .686, .168],
                             [.272, .534, .131]])
     
-    imagem = Image.fromarray(imagem_array)
+    imagem = Image.fromarray(imagem_array.astype("uint8"))
 
     imagem_transformada = np.dot(imagem,sepia_filter.T)
     imagem_transformada = np.clip(resultado,0,255)
