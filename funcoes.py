@@ -61,19 +61,6 @@ def filtro_blur(caminho_imagem):
 
     return cv2.imwrite("imagem_resulatado.jpg", imagem_borrada)
 
-def filtro_amarelo(caminho_da_imagem):
-    imagem = Image.open(caminho_da_imagem)
-    imagem_array = np.array(imagem)
-
-    filtro_amarelo = np.array([1.5, 1.2, 0.8])
-    imagem_transformada = imagem_array * filtro_amarelo
-
-    imagem_transformada = np.clip(imagem_transformada, 0, 255)
-
-    resultado = Image.fromarray(imagem_transformada.astype("uint8"))
-
-    return resultado.save("imagem_resultado.png")
-
 def repete_imagem(caminho_imagem, num_repeticoes):
     imagem = Image.open(caminho_imagem)
     
