@@ -2,27 +2,20 @@ import numpy as np
 from PIL import Image
 import cv2
 
-def escurecer_imagem(imagem_array, pct_escurecimento, escolhe):
+def escurecer_imagem(imagem_array, pct_escurecimento):
 
     for canal_cor in range(0,3):
         imagem_array[:,:,canal_cor] = imagem_array[:,:,canal_cor] * ((100-pct_escurecimento)/100)
 
-    if escolhe == "show":
-        resultado = Image.fromarray(imagem_array)
-        return resultado.show("imagem_resultado.png")
-    elif escolhe == "dont show":
-        return Image.fromarray(imagem_array)
+    resultado = Image.fromarray(imagem_array)
+    return resultado.save("imagem_resultado.png")
 
-def imagem_preto_branco(imagem_array, escolhe):
-    
+def imagem_preto_branco(imagem_array):
+
     imagem_array = np.dot(imagem_array[..., :3], [0.3, 0.59, 0.11])
-
-    if escolhe == "show":
-        resultado = Image.fromarray(imagem_array)
-        return resultado.show("imagem_resultado.png")
-    elif escolhe == "dont show":
-        return Image.fromarray(imagem_array)
-
+    resultado = Image.fromarray(imagem_array)
+    return resultado.save("imagem_resultado.png")
+    
 def rotacior_90(imagem_array):
 
     imagem_array = np.transpose(imagem_array, (1,0,2))

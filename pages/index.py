@@ -24,12 +24,21 @@ with st.container():
     imagem_yuri = Image.open("imagens/yuri.png")
     imagem_yuri_array = np.array(imagem_yuri)
     # Botão escure imagem
-    if st.button("Escurecer Imagem"):
-        escurecer_imagem(imagem_yuri_array, 70, "show")
 
-    # Botão imagem preto e branco
-    if st.button("Imagem preto e branco"):
-        imagem_preto_branco(imagem_yuri_array, "show")    
+    # Opções de transformação
+    transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Escurecer Imagem", "Imagem Preto e Branco"])
+
+    # Imagem original
+    #st.image("imagens/yuri.png", caption="Imagem Original")
+
+    # Botão para aplicar a transformação selecionada
+    if transformacao == "Escurecer Imagem":
+        escurecer_imagem(imagem_yuri_array, 70)
+        st.image("imagem_resultado.png", caption="Imagem Escurecida")
+
+    if transformacao == "Imagem Preto e Branco":
+        imagem_preto_branco(imagem_yuri_array)
+        st.image("imagem_resultado.png", caption="Imagem em Preto e Branco")    
 
 with st.container():
     # Usa st.file_uploader para permitir o upload de imagens
@@ -40,9 +49,6 @@ with st.container():
         imagem_original = Image.open(uploaded_file)
         imagem_array = np.array(imagem_original)
 
-        # Salva a imagem original em um arquivo temporário
-        # caminho_da_imagem_original = "temp_imagem_original.png"
-        # imagem_original.save(imagem_original, format="PNG")
         st.image(imagem_original, caption="Imagem Original", use_column_width=True)
 
         imagem_alterada = escurecer_imagem(imagem_array, 70, "dont show")
