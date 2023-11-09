@@ -154,3 +154,15 @@ def filtro_sepia(caminho_imagem):
     resultado = Image.fromarray(imagem_transformada.astype("uint8"))
 
     return resultado.save("imagem_resultado.png")
+
+def cor_negativa(caminho_imagem):
+    imagem = Image.open(caminho_imagem)
+    imagem_array = np.array(imagem)
+
+    for canal_cor in range(0,3):
+        imagem_array[:,:,canal_cor] = 255 - imagem_array[:,:,canal_cor]
+
+    
+    resultado = Image.fromarray(imagem_array.astype("uint8"))
+
+    return resultado.save("imagem_resultado.png")
