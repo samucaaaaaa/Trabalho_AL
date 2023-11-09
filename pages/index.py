@@ -1,6 +1,7 @@
 from PIL import Image
 import streamlit as st
 from funcoes import *
+import cv2
 
 st.set_page_config(page_title="Trabalho de Álgebra Linear")
 
@@ -26,7 +27,9 @@ with st.container():
     # Botão escure imagem
 
     # Opções de transformação
-    transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Escurecer Imagem", "Imagem Preto e Branco"])
+    transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Escurecer Imagem", "Imagem Preto e Branco", "Rotacionar 90°", "Filtro quente",
+                                                              "Inverter imagem", "Repetir imagem", "FIltro frio", "Filtro blur", "Redimensionar imagem",
+                                                              "FIltro frio", "FIltro sepia", "Cor negativa"])
 
     # Imagem original
     #st.image("imagens/yuri.png", caption="Imagem Original")
@@ -38,7 +41,49 @@ with st.container():
 
     if transformacao == "Imagem Preto e Branco":
         imagem_preto_branco(imagem_yuri_array)
-        st.image("imagem_resultado.png", caption="Imagem em Preto e Branco")    
+        st.image("imagem_resultado.png")
+
+    if transformacao == "Rotacionar 90°":
+        rotaciona_90(imagem_yuri_array)
+        st.image("imagem_resultado.png") 
+
+    if transformacao == "Filtro quente":
+        filtro_quente(imagem_yuri_array)
+        st.image("imagem_resultado.png")  
+
+    if transformacao == "Inverter imagem":
+        inverte_imagem(imagem_yuri_array)
+        st.image("imagem_resultado.png")       
+
+    if transformacao == "Filtro blur":
+        imagem_yuri_array = cv2.imread("imagens/yuri.png")
+        filtro_blur(imagem_yuri_array)
+        st.image("imagem_resultado.png")    
+
+    if transformacao == "Repetir imagem":
+        repete_imagem(imagem_yuri_array, 7)
+        st.image("imagem_resultado.png") 
+
+    if transformacao == "FIltro frio":
+        filtro_frio(imagem_yuri_array)
+        st.image("imagem_resultado.png")  
+
+    if transformacao == "Redimensionar imagem":
+        imagem_yuri_array = cv2.imread("imagens/yuri.png")
+        redimensionar_imagem(imagem_yuri_array, 20, 70)
+        st.image("imagem_resultado.png")  
+
+    if transformacao == "Filtrar cor":
+        filtro_cor(imagem_yuri_array)
+        st.image("imagem_resultado.png")   
+
+    if transformacao == "FIltro sepia":
+        filtro_sepia(imagem_yuri_array)
+        st.image("imagem_resultado.png") 
+
+    if transformacao == "Cor negativa":
+        cor_negativa(imagem_yuri_array)
+        st.image("imagem_resultado.png")                    
 
 with st.container():
     # Usa st.file_uploader para permitir o upload de imagens
