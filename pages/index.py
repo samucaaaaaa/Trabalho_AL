@@ -21,13 +21,15 @@ with st.container():
     st.write("Clique no botão para alterar a imagem!")
     st.image("imagens/yuri.png") 
 
+    imagem_yuri = Image.open("imagens/yuri.png")
+    imagem_yuri_array = np.array(imagem_yuri)
     # Botão escure imagem
     if st.button("Escurecer Imagem"):
-        escurecer_imagem("imagens/yuri.png", 70, "show")
+        escurecer_imagem(imagem_yuri_array, 70, "show")
 
     # Botão imagem preto e branco
     if st.button("Imagem preto e branco"):
-        imagem_preto_branco("imagens/yuri.png", "show")    
+        imagem_preto_branco(imagem_yuri_array, "show")    
 
 with st.container():
     # Usa st.file_uploader para permitir o upload de imagens
@@ -36,13 +38,14 @@ with st.container():
     if uploaded_file is not None:
         # Carrega a imagem original
         imagem_original = Image.open(uploaded_file)
+        imagem_array = np.array(imagem_original)
 
         # Salva a imagem original em um arquivo temporário
-        caminho_da_imagem_original = "temp_imagem_original.png"
-        imagem_original.save(caminho_da_imagem_original, format="PNG")
+        # caminho_da_imagem_original = "temp_imagem_original.png"
+        # imagem_original.save(imagem_original, format="PNG")
         st.image(imagem_original, caption="Imagem Original", use_column_width=True)
 
-        imagem_alterada = escurecer_imagem(caminho_da_imagem_original, 70, "dont show")
+        imagem_alterada = escurecer_imagem(imagem_array, 70, "dont show")
         caminho_da_imagem_alterada = "temp_imagem_alterada.png"
         imagem_alterada.save(caminho_da_imagem_alterada, format="PNG")
         st.image(imagem_alterada, caption="Imagem Alterada", use_column_width=True)
