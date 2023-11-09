@@ -16,7 +16,7 @@ def imagem_preto_branco(imagem_array):
     resultado = Image.fromarray(imagem_array.astype("uint8"))
     return resultado.save("imagem_resultado.png")
 
-def rotacior_90(imagem_array):
+def rotaciona_90(imagem_array):
 
     imagem_array = np.transpose(imagem_array, (1,0,2))
     resultado = Image.fromarray(imagem_array.astype("uint8"))
