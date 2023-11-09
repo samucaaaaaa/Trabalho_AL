@@ -34,9 +34,10 @@ if uploaded_file is not None:
 
     # Salva a imagem original em um arquivo temporário
     caminho_da_imagem_original = "temp_imagem_original.png"
+    imagem_original.save(caminho_da_imagem_original, format="PNG")
     st.image(imagem_original, caption="Imagem Original", use_column_width=True)
 
-    imagem_alterada = escurecer_imagem(caminho_da_imagem_original, 30)
+    imagem_alterada = escurecer_imagem(caminho_da_imagem_original, 70)
     caminho_da_imagem_alterada = "temp_imagem_alterada.png"
     imagem_alterada.save(caminho_da_imagem_alterada, format="PNG")
     st.image(imagem_alterada, caption="Imagem Alterada", use_column_width=True)

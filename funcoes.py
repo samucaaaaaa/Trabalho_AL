@@ -115,7 +115,7 @@ def filtro_sepia(caminho_imagem):
 
     return imagem.save("imagem_resultado.png")
 
-def redimensionar_imagem(caminho_imagem, largura, altura):
+def redimensionar_imagem(caminho_imagem, altura, largura):
     # Carrega a imagem do caminho especificado
     imagem = cv2.imread(caminho_imagem)
 
