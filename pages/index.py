@@ -29,7 +29,7 @@ with st.container():
     # Opções de transformação
     transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Escurecer Imagem", "Imagem Preto e Branco", "Rotacionar 90°", "Filtro quente",
                                                               "Inverter imagem", "Repetir imagem", "FIltro frio", "Filtro blur", "Redimensionar imagem",
-                                                              "FIltro frio", "FIltro sepia", "Cor negativa"])
+                                                              "FIltro sepia", "Cor negativa"])
 
     # Imagem original
     #st.image("imagens/yuri.png", caption="Imagem Original")
