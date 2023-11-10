@@ -116,9 +116,9 @@ def redimensionar_imagem(imagem_array, altura, largura, salvar=False):
     imagem_redimensionada = Image.fromarray(imagem_redimensionada_array.astype("uint8"))
 
     if salvar == True:
-        return imagem_redimensionada.save("imagem_resultado.png")
+        return imagem_redimensionada.save("imagem_resultado.png"), image(imagem_redimensionada, caption="Imagem Alterada", width=imagem_array.shape[1])
     elif salvar == False:
-        return image(imagem_redimensionada, caption="Imagem Alterada", width=377)
+        return image(imagem_redimensionada, caption="Imagem Alterada", width=imagem_array.shape[1])
 
 
 def filtro_cor(imagem_array, cor, tipo_imagem=None, salvar=False):

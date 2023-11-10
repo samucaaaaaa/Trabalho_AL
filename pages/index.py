@@ -23,8 +23,7 @@ with st.container():
 
     imagem_yuri = Image.open("imagens/yuri.png")
     imagem_yuri_array = np.array(imagem_yuri)
-    # Botão escure imagem
-
+    
     # Opções de transformação
     transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Cor negativa", "Escurecer Imagem", "Filtrar cor", "Filtro blur",
                                                                "FIltro frio", "Filtro quente","FIltro sepia", "Imagem Preto e Branco",
@@ -60,9 +59,9 @@ with st.container():
         filtro_frio(imagem_yuri_array)  
 
     if transformacao == "Redimensionar imagem":
-        altura = st.slider("Escolha a altura:", 100, 800, step=20)
-        largura = st.slider("Escolha a largura", 100, 1000, step=20)
-        redimensionar_imagem(imagem_yuri_array, altura, largura)
+        altura = st.slider("Escolha a altura:", 100, 800,imagem_yuri_array.shape[0], step=20)
+        largura = st.slider("Escolha a largura", 100, 1000, imagem_yuri_array.shape[1], step=20)
+        redimensionar_imagem(imagem_yuri_array, altura, largura, salvar=True)
 
     if transformacao == "Filtrar cor":
         cor = st.selectbox("Escolha a cor do filtro:", ["agua", "amarelo", "azul", "roxo", "verde", "vermelho"])
