@@ -84,6 +84,8 @@ with st.container():
         st.image("imagem_resultado.png")                    
 
 with st.container():
+    st.write("---")
+    st.write("Escolha uma imagem para fazer as transformações!")
     # Usa st.file_uploader para permitir o upload de imagens
     uploaded_file = st.file_uploader("Faça o upload de uma imagem", type=["jpg", "png", "jpeg"])
     # Verifica se um arquivo foi enviado
@@ -94,9 +96,10 @@ with st.container():
 
         st.image(imagem_original, caption="Imagem Original", use_column_width=True)
 
-        imagem_alterada = escurecer_imagem(imagem_array, 70)
+        imagem_alterada = escurecer_imagem(imagem_array, 70, "no")
         imagem_alterada.save("temp_imagem_alterada.png")
         st.image(imagem_alterada, caption="Imagem Alterada", use_column_width=True)
+    # TODO: Fazer um selectbox para o usuário escolher o tipo de transformação após realizar o upload da imagem    
         
 
         

@@ -2,27 +2,39 @@ import numpy as np
 from PIL import Image
 import cv2
 
-def escurecer_imagem(imagem_array, pct_escurecimento):
+def escurecer_imagem(imagem_array, pct_escurecimento, escolhe_salvar):
 
     for canal_cor in range(0,3):
         imagem_array[:,:,canal_cor] = imagem_array[:,:,canal_cor] * ((100-pct_escurecimento)/100)
 
     resultado = Image.fromarray(imagem_array.astype("uint8"))
-    return resultado.save("imagem_resultado.png")
 
-def imagem_preto_branco(imagem_array):
+    if escolhe_salvar == "yes":
+        return resultado.save("imagem_resultado.png")
+    elif escolhe_salvar == "no":
+        return resultado
+
+def imagem_preto_branco(imagem_array, escolhe_salvar):
 
     imagem_array = np.dot(imagem_array[..., :3], [0.3, 0.59, 0.11])
     
     resultado = Image.fromarray(imagem_array.astype("uint8"))
-    return resultado.save("imagem_resultado.png")
 
-def rotaciona_90(imagem_array):
+    if escolhe_salvar == "yes":
+        return resultado.save("imagem_resultado.png")
+    elif escolhe_salvar == "no":
+        return resultado
+
+def rotaciona_90(imagem_array, escolhe_salvar):
 
     imagem_array = np.transpose(imagem_array, (1,0,2))
     
     resultado = Image.fromarray(imagem_array.astype("uint8"))
-    return resultado.save("imagem_resultado.png")
+    
+    if escolhe_salvar == "yes":
+        return resultado.save("imagem_resultado.png")
+    elif escolhe_salvar == "no":
+        return resultado
 
 def filtro_quente(imagem_array):
 
