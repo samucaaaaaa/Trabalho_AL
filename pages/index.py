@@ -19,7 +19,7 @@ with st.container():
 with st.container():
     st.write("---")
     st.write("Clique no botão para alterar a imagem!")
-    st.image("imagens/yuri.png") 
+    st.image("imagens/yuri.png", caption="Imagem Original") 
 
     imagem_yuri = Image.open("imagens/yuri.png")
     imagem_yuri_array = np.array(imagem_yuri)
@@ -30,12 +30,12 @@ with st.container():
                                                                "FIltro frio", "Filtro quente","FIltro sepia", "Imagem Preto e Branco",
                                                               "Inverter imagem",  "Repetir imagem", "Rotacionar 90°","Redimensionar imagem"])
 
-    # Imagem original
-    #st.image("imagens/yuri.png", caption="Imagem Original")
+    # TODO: Tentar tratar exceção nas funções que recebem tipo de imagem como parâmetro
 
     # Botão para aplicar a transformação selecionada
     if transformacao == "Escurecer Imagem":
-        escurecer_imagem(imagem_yuri_array, 70, "yes")
+        porcent_escurecimento = st.slider("Escolha a porcentagem de escurecimento:", 0, 100, 1)
+        escurecer_imagem(imagem_yuri_array, porcent_escurecimento, "yes")
         st.image("imagem_resultado.png", caption="Imagem Escurecida")
 
     if transformacao == "Imagem Preto e Branco":
@@ -60,7 +60,8 @@ with st.container():
         st.image("imagem_resultado.png")    
 
     if transformacao == "Repetir imagem":
-        repete_imagem(imagem_yuri_array, 7)
+        n_repeticoes = st.slider("Escolha o número repetições:", 1, 10, 1)
+        repete_imagem(imagem_yuri_array, n_repeticoes)
         st.image("imagem_resultado.png") 
 
     if transformacao == "FIltro frio":
@@ -68,11 +69,14 @@ with st.container():
         st.image("imagem_resultado.png")  
 
     if transformacao == "Redimensionar imagem":
-        redimensionar_imagem(imagem_yuri_array, 200, 700)
+        altura = st.slider("Escolha a altura:", 100, 800, step=20)
+        largura = st.slider("Escolha a largura", 100, 1000, step=20)
+        redimensionar_imagem(imagem_yuri_array, altura, largura)
         st.image("imagem_resultado.png")  
 
     if transformacao == "Filtrar cor":
-        filtro_cor(imagem_yuri_array, "vermelho", "png")
+        cor = st.selectbox("Escolha a cor do filtro:", ["agua", "amarelo", "azul", "roxo", "verde", "vermelho"])
+        filtro_cor(imagem_yuri_array, cor, "png")
         st.image("imagem_resultado.png")   
 
     if transformacao == "FIltro sepia":
