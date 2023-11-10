@@ -35,57 +35,44 @@ with st.container():
     # Botão para aplicar a transformação selecionada
     if transformacao == "Escurecer Imagem":
         porcent_escurecimento = st.slider("Escolha a porcentagem de escurecimento:", 0, 100, 1)
-        escurecer_imagem(imagem_yuri_array, porcent_escurecimento, "yes")
-        st.image("imagem_resultado.png", caption="Imagem Escurecida")
+        escurecer_imagem(imagem_yuri_array, porcent_escurecimento)
 
     if transformacao == "Imagem Preto e Branco":
-        imagem_preto_branco(imagem_yuri_array, "yes")
-        st.image("imagem_resultado.png")
+        imagem_preto_branco(imagem_yuri_array)
 
     if transformacao == "Rotacionar 90°":
-        rotaciona_90(imagem_yuri_array, "yes")
-        st.image("imagem_resultado.png") 
+        rotaciona_90(imagem_yuri_array)
 
     if transformacao == "Filtro quente":
-        filtro_quente(imagem_yuri_array)
-        st.image("imagem_resultado.png")  
+        filtro_quente(imagem_yuri_array)  
 
     if transformacao == "Inverter imagem":
-        inverte_imagem(imagem_yuri_array)
-        st.image("imagem_resultado.png")       
+        inverte_imagem(imagem_yuri_array)       
 
     if transformacao == "Filtro blur":
         imagem_yuri_array = cv2.imread("imagens/yuri.png")
-        filtro_blur(imagem_yuri_array)
-        st.image("imagem_resultado.png")    
+        filtro_blur(imagem_yuri_array)    
 
     if transformacao == "Repetir imagem":
         n_repeticoes = st.slider("Escolha o número repetições:", 1, 10, 1)
         repete_imagem(imagem_yuri_array, n_repeticoes)
-        st.image("imagem_resultado.png") 
-
     if transformacao == "FIltro frio":
-        filtro_frio(imagem_yuri_array)
-        st.image("imagem_resultado.png")  
+        filtro_frio(imagem_yuri_array)  
 
     if transformacao == "Redimensionar imagem":
         altura = st.slider("Escolha a altura:", 100, 800, step=20)
         largura = st.slider("Escolha a largura", 100, 1000, step=20)
         redimensionar_imagem(imagem_yuri_array, altura, largura)
-        st.image("imagem_resultado.png")  
 
     if transformacao == "Filtrar cor":
         cor = st.selectbox("Escolha a cor do filtro:", ["agua", "amarelo", "azul", "roxo", "verde", "vermelho"])
-        filtro_cor(imagem_yuri_array, cor, "png")
-        st.image("imagem_resultado.png")   
+        filtro_cor(imagem_yuri_array, cor, "png")   
 
     if transformacao == "FIltro sepia":
         filtro_sepia(imagem_yuri_array, "png")
-        st.image("imagem_resultado.png")   
                      
     if transformacao == "Cor negativa":
         cor_negativa(imagem_yuri_array)
-        st.image("imagem_resultado.png") 
 
 with st.container():
     st.write("---")
@@ -101,7 +88,7 @@ with st.container():
         st.image(imagem_original, caption="Imagem Original", use_column_width=True)
 
         imagem_alterada = escurecer_imagem(imagem_array, 70, "no")
-        imagem_alterada.save("temp_imagem_alterada.png")
+        # imagem_alterada.save("temp_imagem_alterada.png")
         st.image(imagem_alterada, caption="Imagem Alterada", use_column_width=True)
     # TODO: Fazer um selectbox para o usuário escolher o tipo de transformação após realizar o upload da imagem    
         
