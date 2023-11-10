@@ -26,24 +26,24 @@ with st.container():
     # Botão escure imagem
 
     # Opções de transformação
-    transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Escurecer Imagem", "Imagem Preto e Branco", "Rotacionar 90°", "Filtro quente",
-                                                              "Inverter imagem", "Repetir imagem", "FIltro frio", "Filtro blur", "Redimensionar imagem",
-                                                              "FIltro sepia", "Cor negativa"])
+    transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Cor negativa", "Escurecer Imagem", "Filtrar cor", "Filtro blur",
+                                                               "FIltro frio", "Filtro quente","FIltro sepia", "Imagem Preto e Branco",
+                                                              "Inverter imagem",  "Repetir imagem", "Rotacionar 90°","Redimensionar imagem"])
 
     # Imagem original
     #st.image("imagens/yuri.png", caption="Imagem Original")
 
     # Botão para aplicar a transformação selecionada
     if transformacao == "Escurecer Imagem":
-        escurecer_imagem(imagem_yuri_array, 70)
+        escurecer_imagem(imagem_yuri_array, 70, "yes")
         st.image("imagem_resultado.png", caption="Imagem Escurecida")
 
     if transformacao == "Imagem Preto e Branco":
-        imagem_preto_branco(imagem_yuri_array)
+        imagem_preto_branco(imagem_yuri_array, "yes")
         st.image("imagem_resultado.png")
 
     if transformacao == "Rotacionar 90°":
-        rotaciona_90(imagem_yuri_array)
+        rotaciona_90(imagem_yuri_array, "yes")
         st.image("imagem_resultado.png") 
 
     if transformacao == "Filtro quente":
@@ -72,16 +72,16 @@ with st.container():
         st.image("imagem_resultado.png")  
 
     if transformacao == "Filtrar cor":
-        filtro_cor(imagem_yuri_array)
+        filtro_cor(imagem_yuri_array, "vermelho", "png")
         st.image("imagem_resultado.png")   
 
     if transformacao == "FIltro sepia":
-        filtro_sepia(imagem_yuri_array)
-        st.image("imagem_resultado.png") 
-
+        filtro_sepia(imagem_yuri_array, "png")
+        st.image("imagem_resultado.png")   
+                     
     if transformacao == "Cor negativa":
         cor_negativa(imagem_yuri_array)
-        st.image("imagem_resultado.png")                    
+        st.image("imagem_resultado.png") 
 
 with st.container():
     st.write("---")

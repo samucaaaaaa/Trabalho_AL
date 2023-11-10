@@ -87,7 +87,7 @@ def redimensionar_imagem(imagem_array, altura, largura):
     imagem_redimensionada = Image.fromarray(imagem_redimensionada_array.astype("uint8"))
     return imagem_redimensionada.save("imagem_resultado.png")
 
-def filtro_cor(imagem_array, cor):
+def filtro_cor(imagem_array, cor, tipo_imagem):
     
     if cor.lower() == "vermelho":
         proporcoes = [1.5,1,1]
@@ -101,7 +101,13 @@ def filtro_cor(imagem_array, cor):
         proporcoes = [1.5, 1.2, 0.8]
     elif cor.lower() == "agua":
         proporcoes = [1,1.5,1.5]
-
+    
+    if tipo_imagem == "png":
+        matriz_correcao = np.array([1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]).reshape(4,3)
+        imagem_array = np.dot(imagem_array, matriz_correcao)
+    else:
+        imagem_array = Image.fromarray(imagem_array)
+    
     filtro = np.array(proporcoes)
     
     imagem_transformada = imagem_array * filtro
@@ -110,15 +116,14 @@ def filtro_cor(imagem_array, cor):
     resultado = Image.fromarray(imagem_transformada.astype("uint8"))
     return resultado.save("imagem_resultado.png")
 
-def filtro_sepia(caminho_imagem):
-    imagem = Image.open(caminho_imagem)
-    imagem_array = np.array(imagem)
+def filtro_sepia(imagem_array, tipo_imagem):
+    if tipo_imagem == "png":
+        matriz_correcao = np.array([1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]).reshape(4,3)
+        imagem = np.dot(imagem_array, matriz_correcao)
+    else:
+        imagem = Image.fromarray(imagem_array)
 
-    sepia_filter = np.array([[.393, .769, .189],
-                            [.349, .686, .168],
-                            [.272, .534, .131]])
-
-    imagem = Image.fromarray(imagem_array)
+    sepia_filter = np.array([[0.393, 0.769, 0.189], [0.349, 0.686, 0.168], [0.272, 0.534, 0.131]])
 
     imagem_transformada = np.dot(imagem,sepia_filter.T)
     imagem_transformada = np.clip(imagem_transformada,0,255)
