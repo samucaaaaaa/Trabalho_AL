@@ -9,7 +9,6 @@ with open("styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True) 
 
 with st.container():
-    st.subheader("Meu primeiro site com o Streamlit")
     st.title("Trasformações Lineares com imagens")
     st.write("Aqui estão algumas transformações que podemos fazer com as imagens")
     st.write("Quer acessar o projeto pelo GitHub? [Clique aqui](https://github.com/samucaaaaaa/Trabalho_AL)")
@@ -95,10 +94,9 @@ with st.container():
 
         st.image(imagem_original, caption="Imagem Original", use_column_width=True)
 
-        imagem_alterada = escurecer_imagem(imagem_array, 70, "dont show")
-        caminho_da_imagem_alterada = "temp_imagem_alterada.png"
-        imagem_alterada.save(caminho_da_imagem_alterada, format="PNG")
+        imagem_alterada = escurecer_imagem(imagem_array, 70)
+        imagem_alterada.save("temp_imagem_alterada.png")
         st.image(imagem_alterada, caption="Imagem Alterada", use_column_width=True)
-        # TODO: Criar um botão para download, tirando o download automático
+        
 
         
