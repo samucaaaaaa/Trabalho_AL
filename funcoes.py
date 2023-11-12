@@ -1,7 +1,6 @@
 import numpy as np
 from PIL import Image
-import cv2
-from streamlit import image
+from streamlit import image, slider, selectbox
 
 
 def escurecer_imagem(imagem_array, pct_escurecimento, salvar=False):
@@ -104,19 +103,19 @@ def redimensionar_imagem(imagem_array, altura, largura, salvar=False, apenas_sal
     imagem_redimensionada = Image.fromarray(imagem_redimensionada_array.astype("uint8"))
     if apenas_salvamento == True:
         return imagem_redimensionada.save("imagem_resultado.png")
-    if salvar == True:
+    elif salvar == True:
         return imagem_redimensionada.save("imagem_resultado.png"), image(imagem_redimensionada, caption="Imagem Alterada", width=imagem_array.shape[1])
     elif salvar == False:
         return image(imagem_redimensionada, caption="Imagem Alterada", width=377)
 
 
-def filtro_blur(imagem_array, salvar=False):
-    redimensionar_imagem(imagem_array, imagem_array.shape[0]/4, imagem_array.shape[1]/4, apenas_salvamento=True)
+def filtro_blur(imagem_array, qnt_blur, salvar=False):
+    redimensionar_imagem(imagem_array, imagem_array.shape[0] / qnt_blur, imagem_array.shape[1] / qnt_blur, apenas_salvamento=True)
     
     imagem = Image.open("imagem_resultado.png")
     imagem_borrada_array = np.array(imagem)
     
-    redimensionar_imagem(imagem_borrada_array, imagem_array.shape[0]*4, imagem_array.shape[1]*4, apenas_salvamento=True)
+    redimensionar_imagem(imagem_borrada_array, imagem_array.shape[0] * qnt_blur, imagem_array.shape[1] * qnt_blur, apenas_salvamento=True)
     
     imagem = Image.open("imagem_resultado.png")
     imagem_borrada_array = np.array(imagem)
@@ -207,3 +206,46 @@ def cor_negativa(imagem_array, salvar=False):
         return resultado.save("imagem_resultado.png"), image(resultado, caption="Imagem Alterada", width=377)
     elif salvar == False:
         return image(resultado, caption="Imagem Alterada", width=377)
+
+def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, key_widgets="teste"):
+    if transformacao == "Escurecer Imagem":
+        porcent_escurecimento = slider("Escolha a porcentagem de escurecimento:", 0, 100, 1, key=f"slider {key_widgets} esc")
+        escurecer_imagem(imagem_array, porcent_escurecimento, salvar)
+
+    if transformacao == "Imagem Preto e Branco":
+        imagem_preto_branco(imagem_array, salvar)
+
+    if transformacao == "Rotacionar 90°":
+        rotaciona_90(imagem_array, salvar)
+
+    if transformacao == "Filtro quente":
+        filtro_quente(imagem_array, salvar)  
+
+    if transformacao == "Inverter imagem":
+        inverte_imagem(imagem_array, salvar)       
+
+    if transformacao == "Filtro blur":
+        intensidade = slider("Escolha a intensidade do blur:", 1, 10, 1, key=f"slider {key_widgets} blur")
+        filtro_blur(imagem_array, intensidade, salvar)    
+
+    if transformacao == "Repetir imagem":
+        n_repeticoes = slider("Escolha o número repetições:", 1, 10, 1, key=f"slider {key_widgets} repetições")
+        repete_imagem(imagem_array, n_repeticoes, salvar)
+        
+    if transformacao == "Filtro frio":
+        filtro_frio(imagem_array, salvar)  
+
+    if transformacao == "Redimensionar imagem":
+        altura = slider("Escolha a altura:", 100, 800,imagem_array.shape[0], step=20, key=f"slider {key_widgets} altura")
+        largura = slider("Escolha a largura", 100, 1000, imagem_array.shape[1], step=20, key=f"slider {key_widgets} largura")
+        redimensionar_imagem(imagem_array, altura, largura, salvar)
+
+    if transformacao == "Filtrar cor":
+        cor = selectbox("Escolha a cor do filtro:", ["agua", "amarelo", "azul", "roxo", "verde", "vermelho"], key=f"selectbox {key_widgets} filtra cor")
+        filtro_cor(imagem_array, cor, tipo_imagem, salvar)   
+
+    if transformacao == "FIltro sepia":
+        filtro_sepia(imagem_array, tipo_imagem, salvar)
+                        
+    if transformacao == "Cor negativa":
+        cor_negativa(imagem_array, salvar)

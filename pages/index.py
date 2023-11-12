@@ -1,49 +1,7 @@
+import numpy as np
 from PIL import Image
 import streamlit as st
-from funcoes import *
-import cv2
-
-def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False):
-    if transformacao == "Escurecer Imagem":
-        porcent_escurecimento = st.slider("Escolha a porcentagem de escurecimento:", 0, 100, 1)
-        escurecer_imagem(imagem_array, porcent_escurecimento, salvar)
-
-    if transformacao == "Imagem Preto e Branco":
-        imagem_preto_branco(imagem_array, salvar)
-
-    if transformacao == "Rotacionar 90°":
-        rotaciona_90(imagem_array, salvar)
-
-    if transformacao == "Filtro quente":
-        filtro_quente(imagem_array, salvar)  
-
-    if transformacao == "Inverter imagem":
-        inverte_imagem(imagem_array, salvar)       
-
-    if transformacao == "Filtro blur":
-        filtro_blur(imagem_array, salvar)    
-
-    if transformacao == "Repetir imagem":
-        n_repeticoes = st.slider("Escolha o número repetições:", 1, 10, 1)
-        repete_imagem(imagem_array, n_repeticoes, salvar)
-        
-    if transformacao == "FIltro frio":
-        filtro_frio(imagem_array, salvar)  
-
-    if transformacao == "Redimensionar imagem":
-        altura = st.slider("Escolha a altura:", 100, 800,imagem_array.shape[0], step=20)
-        largura = st.slider("Escolha a largura", 100, 1000, imagem_array.shape[1], step=20)
-        redimensionar_imagem(imagem_array, altura, largura, salvar)
-
-    if transformacao == "Filtrar cor":
-        cor = st.selectbox("Escolha a cor do filtro:", ["agua", "amarelo", "azul", "roxo", "verde", "vermelho"])
-        filtro_cor(imagem_array, cor, tipo_imagem, salvar)   
-
-    if transformacao == "FIltro sepia":
-        filtro_sepia(imagem_array, tipo_imagem, salvar)
-                        
-    if transformacao == "Cor negativa":
-        cor_negativa(imagem_array, salvar)
+from funcoes import transformacao
 
 st.set_page_config(page_title="Trabalho de Álgebra Linear")
 
@@ -68,7 +26,7 @@ with st.container():
     
     # Opções de transformação
     transformacao_teste = st.selectbox("Escolha a transformação para o teste:", ["Nenhum", "Cor negativa", "Escurecer Imagem", "Filtrar cor", "Filtro blur",
-                                                               "FIltro frio", "Filtro quente","FIltro sepia", "Imagem Preto e Branco",
+                                                               "Filtro frio", "Filtro quente","FIltro sepia", "Imagem Preto e Branco",
                                                               "Inverter imagem",  "Repetir imagem", "Rotacionar 90°","Redimensionar imagem"])
 
     # Botão para aplicar a transformação selecionada
@@ -90,12 +48,12 @@ with st.container():
         st.image(imagem_original, caption="Imagem Original", width=377)
 
         escolha_transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Cor negativa", "Escurecer Imagem", "Filtrar cor", "Filtro blur",
-                                                               "FIltro frio", "Filtro quente","FIltro sepia", "Imagem Preto e Branco",
+                                                               "Filtro frio", "Filtro quente","FIltro sepia", "Imagem Preto e Branco",
                                                               "Inverter imagem",  "Repetir imagem", "Rotacionar 90°","Redimensionar imagem"])
         
         salvamento = st.checkbox("Salvar", value=False)
         
-        transformacao(escolha_transformacao, imagem_array, salvar=salvamento)
+        transformacao(escolha_transformacao, imagem_array, salvar=salvamento, key_widgets="alter")
         
         if salvamento == True and escolha_transformacao == "Nenhum":
             st.write("A nova imagem será salva como 'imagem_resultado.png'")
