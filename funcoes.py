@@ -173,10 +173,10 @@ def filtro_sepia(imagem_array, tipo_imagem=None, salvar=False):
     else:
         imagem = Image.fromarray(imagem_array)
 
-    sepia_filter = np.array([[0.393, 0.769, 0.189], [0.349, 0.686, 0.168], [0.272, 0.534, 0.131]])
+    sepia_filter = np.array([[0.393, 0.349, 0.272], [0.769, 0.686, 0.534], [0.189, 0.168, 0.131]])
     
     try:
-        imagem_transformada = np.dot(imagem,sepia_filter.T)
+        imagem_transformada = np.dot(imagem,sepia_filter)
         imagem_transformada = np.clip(imagem_transformada,0,255)
     except Exception:
         return f"A imagem passada não é do tipo {tipo_imagem}"
