@@ -21,7 +21,6 @@ def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False):
         inverte_imagem(imagem_array, salvar)       
 
     if transformacao == "Filtro blur":
-        imagem_array = cv2.imread("imagens/yuri.png")
         filtro_blur(imagem_array, salvar)    
 
     if transformacao == "Repetir imagem":
@@ -96,7 +95,7 @@ with st.container():
         
         salvamento = st.checkbox("Salvar", value=False)
         
-        transformacao(escolha_transformacao, imagem_array)#, salvar=salvamento)
+        transformacao(escolha_transformacao, imagem_array, salvar=salvamento)
         
         if salvamento == True and escolha_transformacao == "Nenhum":
             st.write("A nova imagem será salva como 'imagem_resultado.png'")

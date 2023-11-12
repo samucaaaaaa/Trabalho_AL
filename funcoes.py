@@ -66,18 +66,6 @@ def inverte_imagem(imagem_array, salvar=False):
         return image(imagem_invertida, caption="Imagem Alterada", width=377)
 
 
-def filtro_blur(imagem, salvar=False):
-
-    matriz_filtro = np.ones((3, 3), np.float32) / 9
-
-    imagem_borrada = cv2.filter2D(imagem, -1, matriz_filtro)
-    
-    if salvar == True:
-        return cv2.imwrite("imagem_resultado.png", imagem_borrada)
-    else:
-        return image(imagem_borrada, caption="Imagem Alterada", width=377)
-
-
 def repete_imagem(imagem_array, num_repeticoes, salvar=False):
 
     imagem_array = imagem_array[:, :, :3]
@@ -104,7 +92,7 @@ def filtro_frio(imagem_array, salvar=False):
         return image(imagem_filtrada, caption="Imagem Alterada", width=377)
 
 
-def redimensionar_imagem(imagem_array, altura, largura, salvar=False):
+def redimensionar_imagem(imagem_array, altura, largura, salvar=False, apenas_salvamento=False):
 
     altura_original, largura_original = imagem_array.shape[:2]
 
@@ -114,12 +102,32 @@ def redimensionar_imagem(imagem_array, altura, largura, salvar=False):
     imagem_redimensionada_array = imagem_array[np.ix_(y_indices, x_indices)]
     
     imagem_redimensionada = Image.fromarray(imagem_redimensionada_array.astype("uint8"))
-
+    if apenas_salvamento == True:
+        return imagem_redimensionada.save("imagem_resultado.png")
     if salvar == True:
         return imagem_redimensionada.save("imagem_resultado.png"), image(imagem_redimensionada, caption="Imagem Alterada", width=imagem_array.shape[1])
     elif salvar == False:
         return image(imagem_redimensionada, caption="Imagem Alterada", width=377)
 
+
+def filtro_blur(imagem_array, salvar=False):
+    redimensionar_imagem(imagem_array, imagem_array.shape[0]/4, imagem_array.shape[1]/4, apenas_salvamento=True)
+    
+    imagem = Image.open("imagem_resultado.png")
+    imagem_borrada_array = np.array(imagem)
+    
+    redimensionar_imagem(imagem_borrada_array, imagem_array.shape[0]*4, imagem_array.shape[1]*4, apenas_salvamento=True)
+    
+    imagem = Image.open("imagem_resultado.png")
+    imagem_borrada_array = np.array(imagem)
+
+    imagem_borrada = Image.fromarray(imagem_borrada_array.astype("uint8"))
+
+    if salvar == True:
+        return imagem_borrada.save("imagem_resultado.png"), image(imagem_borrada, caption="Imagem Alterada", width=377)
+    else:
+        return image(imagem_borrada, caption="Imagem Alterada", width=377)
+    
 
 def filtro_cor(imagem_array, cor, tipo_imagem=None, salvar=False):
     
