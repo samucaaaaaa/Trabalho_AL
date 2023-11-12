@@ -1,7 +1,7 @@
 import numpy as np
 from PIL import Image
 import streamlit as st
-from funcoes import transformacao
+from funcoes import transformacao, centralize_widget
 
 st.set_page_config(page_title="Trabalho de Álgebra Linear")
 
@@ -19,7 +19,7 @@ with st.container():
 with st.container():
     st.write("---")
     st.write("Selecione o filtro para alterar a imagem!")
-    st.image("imagens/yuri.png", caption="Imagem Original") 
+    centralize_widget(st.image, "imagens/yuri.png", caption="Imagem Original", width=377)
 
     imagem_yuri = Image.open("imagens/yuri.png")
     imagem_yuri_array = np.array(imagem_yuri)
@@ -45,7 +45,7 @@ with st.container():
         imagem_original = Image.open(uploaded_file)
         imagem_array = np.array(imagem_original)
 
-        st.image(imagem_original, caption="Imagem Original", width=377)
+        centralize_widget(st.image, imagem_original, caption="Imagem Original", width=377)
 
         escolha_transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Cor negativa", "Escurecer Imagem", "Filtrar cor", "Filtro blur",
                                                                "Filtro frio", "Filtro quente","FIltro sepia", "Imagem Preto e Branco",

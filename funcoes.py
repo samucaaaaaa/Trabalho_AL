@@ -1,6 +1,6 @@
 import numpy as np
 from PIL import Image
-from streamlit import image, slider, selectbox
+from streamlit import image, slider, selectbox, columns
 
 
 def escurecer_imagem(imagem_array, pct_escurecimento, salvar=False):
@@ -11,9 +11,9 @@ def escurecer_imagem(imagem_array, pct_escurecimento, salvar=False):
     resultado = Image.fromarray(imagem_array.astype("uint8"))
 
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), image(resultado, caption="Imagem Alterada", width=377)
+        return resultado.save("imagem_resultado.png"), centralize_widget(image, resultado, caption="Imagem Alterada", width=377)
     elif salvar == False:
-        return image(resultado, caption="Imagem Alterada", width=377)
+        return centralize_widget(image, resultado, caption="Imagem Alterada", width=377)
 
 
 def imagem_preto_branco(imagem_array, salvar=False):
@@ -23,9 +23,9 @@ def imagem_preto_branco(imagem_array, salvar=False):
     resultado = Image.fromarray(imagem_array.astype("uint8"))
 
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), image(resultado, caption="Imagem Alterada", width=377)
+        return resultado.save("imagem_resultado.png"), centralize_widget(image, resultado, caption="Imagem Alterada", width=377)
     elif salvar == False:
-        return image(resultado, caption="Imagem Alterada", width=377)
+        return centralize_widget(image, resultado, caption="Imagem Alterada", width=377)
 
 
 def rotaciona_90(imagem_array, salvar=False):
@@ -35,9 +35,9 @@ def rotaciona_90(imagem_array, salvar=False):
     resultado = Image.fromarray(imagem_array.astype("uint8"))
     
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), image(resultado, caption="Imagem Alterada", width=377)
+        return resultado.save("imagem_resultado.png"), centralize_widget(image, resultado, caption="Imagem Alterada", width=377)
     elif salvar == False:
-        return image(resultado, caption="Imagem Alterada", width=377)
+        return centralize_widget(image, resultado, caption="Imagem Alterada", width=377)
 
 
 def filtro_quente(imagem_array, salvar=False):
@@ -48,9 +48,9 @@ def filtro_quente(imagem_array, salvar=False):
     resultado = Image.fromarray(imagem_array.astype("uint8"))
 
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), image(resultado, caption="Imagem Alterada", width=377)
+        return resultado.save("imagem_resultado.png"), centralize_widget(image, resultado, caption="Imagem Alterada", width=377)
     elif salvar == False:
-        return image(resultado, caption="Imagem Alterada", width=377)
+        return centralize_widget(image, resultado, caption="Imagem Alterada", width=377)
 
 
 def inverte_imagem(imagem_array, salvar=False):
@@ -60,9 +60,9 @@ def inverte_imagem(imagem_array, salvar=False):
     imagem_invertida = Image.fromarray(imagem_invertida_array.astype("uint8"))
 
     if salvar == True:
-        return imagem_invertida.save("imagem_resultado.png"), image(imagem_invertida, caption="Imagem Alterada", width=377)
+        return imagem_invertida.save("imagem_resultado.png"), centralize_widget(image, imagem_invertida, caption="Imagem Alterada", width=377)
     elif salvar == False:
-        return image(imagem_invertida, caption="Imagem Alterada", width=377)
+        return centralize_widget(image, imagem_invertida, caption="Imagem Alterada", width=377)
 
 
 def repete_imagem(imagem_array, num_repeticoes, salvar=False):
@@ -73,9 +73,9 @@ def repete_imagem(imagem_array, num_repeticoes, salvar=False):
     imagem_repeticoes = Image.fromarray(imagem_repeticoes_array)
 
     if salvar == True:
-        return imagem_repeticoes.save("imagem_resultado.png"), image(imagem_repeticoes, caption="Imagem Alterada", width=377)
+        return imagem_repeticoes.save("imagem_resultado.png"), centralize_widget(image, imagem_repeticoes, caption="Imagem Alterada", width=377)
     elif salvar == False:
-        return image(imagem_repeticoes, caption="Imagem Alterada", width=377)
+        return centralize_widget(image, imagem_repeticoes, caption="Imagem Alterada", width=377)
 
 
 def filtro_frio(imagem_array, salvar=False):
@@ -86,9 +86,9 @@ def filtro_frio(imagem_array, salvar=False):
     imagem_filtrada = Image.fromarray(imagem_array.astype("uint8"))
 
     if salvar == True:
-        return imagem_filtrada.save("imagem_resultado.png"), image(imagem_filtrada, caption="Imagem Alterada", width=377)
+        return imagem_filtrada.save("imagem_resultado.png"), centralize_widget(image, imagem_filtrada, caption="Imagem Alterada", width=377)
     elif salvar == False:
-        return image(imagem_filtrada, caption="Imagem Alterada", width=377)
+        return centralize_widget(image, imagem_filtrada, caption="Imagem Alterada", width=377)
 
 
 def redimensionar_imagem(imagem_array, altura, largura, salvar=False, apenas_salvamento=False):
@@ -104,9 +104,9 @@ def redimensionar_imagem(imagem_array, altura, largura, salvar=False, apenas_sal
     if apenas_salvamento == True:
         return imagem_redimensionada.save("imagem_resultado.png")
     elif salvar == True:
-        return imagem_redimensionada.save("imagem_resultado.png"), image(imagem_redimensionada, caption="Imagem Alterada", width=imagem_array.shape[1])
+        return imagem_redimensionada.save("imagem_resultado.png"), centralize_widget(image, imagem_redimensionada, caption="Imagem Alterada", width=377)
     elif salvar == False:
-        return image(imagem_redimensionada, caption="Imagem Alterada", width=377)
+        return centralize_widget(image, imagem_redimensionada, caption="Imagem Alterada", width=377)
 
 
 def filtro_blur(imagem_array, qnt_blur, salvar=False):
@@ -123,9 +123,9 @@ def filtro_blur(imagem_array, qnt_blur, salvar=False):
     imagem_borrada = Image.fromarray(imagem_borrada_array.astype("uint8"))
 
     if salvar == True:
-        return imagem_borrada.save("imagem_resultado.png"), image(imagem_borrada, caption="Imagem Alterada", width=377)
+        return imagem_borrada.save("imagem_resultado.png"), centralize_widget(image, imagem_borrada, caption="Imagem Alterada", width=377)
     else:
-        return image(imagem_borrada, caption="Imagem Alterada", width=377)
+        return centralize_widget(image, imagem_borrada, caption="Imagem Alterada", width=377)
     
 
 def filtro_cor(imagem_array, cor, tipo_imagem=None, salvar=False):
@@ -161,9 +161,9 @@ def filtro_cor(imagem_array, cor, tipo_imagem=None, salvar=False):
         resultado = Image.fromarray(imagem_transformada.astype("uint8"))
 
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), image(resultado, caption="Imagem Alterada", width=377)
+        return resultado.save("imagem_resultado.png"), centralize_widget(image, resultado, caption="Imagem Alterada", width=377)
     elif salvar == False:
-        return image(resultado, caption="Imagem Alterada", width=377)
+        return centralize_widget(image, resultado, caption="Imagem Alterada", width=377)
 
 
 def filtro_sepia(imagem_array, tipo_imagem=None, salvar=False):
@@ -189,9 +189,9 @@ def filtro_sepia(imagem_array, tipo_imagem=None, salvar=False):
         resultado = Image.fromarray(imagem_transformada.astype("uint8"))
 
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), image(resultado, caption="Imagem Alterada", width=377)
+        return resultado.save("imagem_resultado.png"), centralize_widget(image, resultado, caption="Imagem Alterada", width=377)
     elif salvar == False:
-        return image(resultado, caption="Imagem Alterada", width=377)
+        return centralize_widget(image, resultado, caption="Imagem Alterada", width=377)
 
 
 def cor_negativa(imagem_array, salvar=False):
@@ -203,9 +203,9 @@ def cor_negativa(imagem_array, salvar=False):
     resultado = Image.fromarray(imagem_array.astype("uint8"))
 
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), image(resultado, caption="Imagem Alterada", width=377)
+        return resultado.save("imagem_resultado.png"), centralize_widget(image, resultado, caption="Imagem Alterada", width=377)
     elif salvar == False:
-        return image(resultado, caption="Imagem Alterada", width=377)
+        return centralize_widget(image, resultado, caption="Imagem Alterada", width=377)
 
 def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, key_widgets="teste"):
     if transformacao == "Escurecer Imagem":
@@ -249,3 +249,9 @@ def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, 
                         
     if transformacao == "Cor negativa":
         cor_negativa(imagem_array, salvar)
+
+
+def centralize_widget(widget, *args, **kwargs):
+    col1, col2, col3 = columns([2,5,2])
+    with col2:
+        widget(*args, **kwargs)
