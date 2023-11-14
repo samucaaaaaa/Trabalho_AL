@@ -19,18 +19,18 @@ with st.container():
 with st.container():
     st.write("---")
     st.write("Selecione o filtro para alterar a imagem!")
-    centralize_widget(st.image, "imagens/yuri.png", caption="Imagem Original", width=377)
+    centralize_widget(st.image, "imagens/paisagem.jpg", caption="Imagem Original", width=377)
 
-    imagem_yuri = Image.open("imagens/yuri.png")
-    imagem_yuri_array = np.array(imagem_yuri)
+    imagem_teste = Image.open("imagens/paisagem.jpg")
+    imagem_teste_array = np.array(imagem_teste)
     
     # Opções de transformação
-    transformacao_teste = st.selectbox("Escolha a transformação para o teste:", ["Nenhum", "Teste", "Cor negativa", "Escurecer Imagem", "Filtrar cor", "Filtro blur",
+    transformacao_teste = st.selectbox("Escolha a transformação para o teste:", ["Nenhum", "Contorno", "Cor negativa", "Escurecer Imagem", "Filtrar cor", "Filtro blur",
                                                                "Filtro cimento", "Filtro frio", "Filtro quente","Filtro sepia", "Imagem Preto e Branco",
                                                               "Inverter imagem",  "Repetir imagem", "Rotacionar 90°","Redimensionar imagem"])
 
     # Botão para aplicar a transformação selecionada
-    transformacao(transformacao_teste, imagem_yuri_array, "png")
+    transformacao(transformacao_teste, imagem_teste_array, "jpg")
 
 with st.container():
     st.write("---")

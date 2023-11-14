@@ -53,9 +53,13 @@ def filtro_quente(imagem_array, salvar=False):
         return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
 
 
-def inverte_imagem(imagem_array, salvar=False):
+def inverte_imagem(imagem_array, eixo, salvar=False):
     
-    imagem_invertida_array = np.flip(imagem_array, 1)
+    if eixo == "Horizontal":
+        eixo = 0
+    elif eixo == "Vertical":
+        eixo = 1
+    imagem_invertida_array = np.flip(imagem_array, eixo)
 
     imagem_invertida = Image.fromarray(imagem_invertida_array.astype("uint8"))
 
@@ -236,6 +240,38 @@ def filtro_cimento(imagem_array, shift, salvar=False):
         return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
 
 
+def contorno_imagem(imagem_array, salvar):
+    # Recebendo os parâmetros com próprio shape, a função redimencionar_imagem apenas retorna um caminho para a imagem original
+    # Isso garaante o funcionamento da função
+    redimensionar_imagem(imagem_array, imagem_array.shape[0], imagem_array.shape[1], apenas_salvamento=True)
+
+    # Convertendo a imagem sem as cores
+    imagem = Image.open("imagem_resultado.png").convert("L")
+    imagem = np.array(imagem)
+    print(imagem.shape)
+    # Definindo o kernel do operador de Sobel
+    sobel_x = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
+    sobel_y = np.array([[-1, -2, -1], [0, 0, 0], [1, 2, 1]])
+
+    # Aplicando o operador de Sobel
+    bordas_x = np.convolve(imagem.flatten(), sobel_x.flatten(), mode="same").reshape(imagem.shape)
+    bordas_y = np.convolve(imagem.flatten(), sobel_y.flatten(), mode="same").reshape(imagem.shape)
+
+    # Calculando a magnitude das bordas
+    bordas = np.hypot(bordas_x, bordas_y)
+
+    # Normalizando para o intervalo 0-255
+    bordas = (bordas / np.max(bordas) * 255)
+    # bordas = np.clip(bordas, 0, 255).astype(np.uint8)
+
+    resultado = Image.fromarray(bordas.astype(np.uint8))
+
+    if salvar == True:
+        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    elif salvar == False:
+        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+
+
 def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, key_widgets="teste"):
     if transformacao == "Escurecer Imagem":
         porcent_escurecimento = st.slider("Escolha a porcentagem de escurecimento:", 0, 100, 1, key=f"slider {key_widgets} esc")
@@ -251,7 +287,8 @@ def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, 
         filtro_quente(imagem_array, salvar)  
 
     if transformacao == "Inverter imagem":
-        inverte_imagem(imagem_array, salvar)       
+        eixo = st.selectbox("Escolha como inverter a imagem:", ["Horizontal", "Vertical"], key=f"selectbox {key_widgets} inverção")
+        inverte_imagem(imagem_array, eixo, salvar)       
 
     if transformacao == "Filtro blur":
         intensidade = st.slider("Escolha a intensidade do blur:", 1, 10, 1, key=f"slider {key_widgets} blur")
@@ -280,8 +317,11 @@ def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, 
         cor_negativa(imagem_array, salvar)
     
     if transformacao == "Filtro cimento":
-        shift = st.slider("Escolha o nível de relevo:", -5, 5, 0, key=f"slider {key_widgets} repetições")
+        shift = st.slider("Escolha o nível de relevo:", -5, 5, 0, key=f"slider {key_widgets} cimento")
         filtro_cimento(imagem_array, shift, salvar)
+    
+    if transformacao == "Contorno imagem":
+        contorno_imagem(imagem_array, salvar)
 
 
 def centralize_widget(widget, *args, **kwargs):
