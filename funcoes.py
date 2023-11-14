@@ -1,7 +1,7 @@
 import numpy as np
 from PIL import Image
 import streamlit as st
-
+# TODO: Tratar exceções com st.write no lugar de print
 
 def escurecer_imagem(imagem_array, pct_escurecimento, salvar=False):
 
@@ -135,11 +135,11 @@ def filtro_cor(imagem_array, cor, tipo_imagem=None, salvar=False):
     elif cor.lower() == "verde":
         proporcoes = [1,1.5,1]
     elif cor.lower() == "azul":
-        proporcoes = [1,1,1.5]
+        proporcoes = [0.5,1,2]
     elif cor.lower() == "roxo":
-        proporcoes = [1.5,1,1.5]
+        proporcoes = [0.8,0.5,1.2]
     elif cor.lower() == "amarelo":
-        proporcoes = [1.5, 1.2, 0.8]
+        proporcoes = [1.5, 1.2, 0.5]
     elif cor.lower() == "agua":
         proporcoes = [1,1.5,1.5]
     
@@ -157,13 +157,14 @@ def filtro_cor(imagem_array, cor, tipo_imagem=None, salvar=False):
     
     except Exception:
         print(f"A imagem passada não é do tipo {tipo_imagem}")
+        return "Erro"
     else:
         resultado = Image.fromarray(imagem_transformada.astype("uint8"))
 
-    if salvar == True:
-        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+        if salvar == True:
+            return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+        elif salvar == False:
+            return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
 
 
 def filtro_sepia(imagem_array, tipo_imagem=None, salvar=False):
@@ -207,6 +208,34 @@ def cor_negativa(imagem_array, salvar=False):
     elif salvar == False:
         return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
 
+
+def filtro_cimento(imagem_array, shift, salvar=False):
+
+    if shift == 0:
+        return centralize_widget(st.image, imagem_array, caption="Imagem Sem Alteração", width=377)
+    
+    # Convertendo a imagem para escala de cinza
+    imagem_cinza = imagem_array.mean(axis=2)
+
+    # Aplicar um filtro de borda
+    bordas = imagem_cinza - np.roll(imagem_cinza, shift=shift, axis=0)
+
+    # Inverter as cores
+    imagem_cimentada = 255 - bordas
+
+    # Normalizar para o intervalo 0-255
+    imagem_cimentada = (imagem_cimentada / np.max(imagem_cimentada) * 255).astype(np.uint8)
+
+    # Ajustar o contraste da imagem
+
+    resultado = Image.fromarray(imagem_cimentada)
+
+    if salvar == True:
+        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    elif salvar == False:
+        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+
+
 def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, key_widgets="teste"):
     if transformacao == "Escurecer Imagem":
         porcent_escurecimento = st.slider("Escolha a porcentagem de escurecimento:", 0, 100, 1, key=f"slider {key_widgets} esc")
@@ -244,11 +273,15 @@ def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, 
         cor = st.selectbox("Escolha a cor do filtro:", ["agua", "amarelo", "azul", "roxo", "verde", "vermelho"], key=f"selectbox {key_widgets} filtra cor")
         filtro_cor(imagem_array, cor, tipo_imagem, salvar)   
 
-    if transformacao == "FIltro sepia":
+    if transformacao == "Filtro sepia":
         filtro_sepia(imagem_array, tipo_imagem, salvar)
                         
     if transformacao == "Cor negativa":
         cor_negativa(imagem_array, salvar)
+    
+    if transformacao == "Filtro cimento":
+        shift = st.slider("Escolha o nível de relevo:", -5, 5, 0, key=f"slider {key_widgets} repetições")
+        filtro_cimento(imagem_array, shift, salvar)
 
 
 def centralize_widget(widget, *args, **kwargs):

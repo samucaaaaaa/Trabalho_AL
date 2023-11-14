@@ -26,7 +26,7 @@ with st.container():
     
     # Opções de transformação
     transformacao_teste = st.selectbox("Escolha a transformação para o teste:", ["Nenhum", "Teste", "Cor negativa", "Escurecer Imagem", "Filtrar cor", "Filtro blur",
-                                                               "Filtro frio", "Filtro quente","FIltro sepia", "Imagem Preto e Branco",
+                                                               "Filtro cimento", "Filtro frio", "Filtro quente","Filtro sepia", "Imagem Preto e Branco",
                                                               "Inverter imagem",  "Repetir imagem", "Rotacionar 90°","Redimensionar imagem"])
 
     # Botão para aplicar a transformação selecionada
@@ -48,7 +48,7 @@ with st.container():
         centralize_widget(st.image, imagem_original, caption="Imagem Original", width=377)
 
         escolha_transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Teste", "Cor negativa", "Escurecer Imagem", "Filtrar cor", "Filtro blur",
-                                                               "Filtro frio", "Filtro quente","FIltro sepia", "Imagem Preto e Branco",
+                                                               "Filtro cimento", "Filtro frio", "Filtro quente","Filtro sepia", "Imagem Preto e Branco",
                                                               "Inverter imagem",  "Repetir imagem", "Rotacionar 90°","Redimensionar imagem"])
         
         salvamento = st.checkbox("Salvar", value=False)
