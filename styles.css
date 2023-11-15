@@ -61,8 +61,18 @@
     color: #000000;
 }
 
+/*Para o botão full screen da imagem*/
+.st-emotion-cache-6awftf[data-testid="StyledFullScreenButton"] {
+    visibility: hidden;
+}
+
+/*Para a linha no canto superior do site*/
+.st-emotion-cache-1dp5vir[data-testid="stDecoration"] {
+    visibility: hidden;
+}
+
 .stButton > button {
-    background-color: #007ACC; /* Azul do Visual Studio Code */
+    background-color: #007ACC; 
     color: white;
     border: none;
     padding: 8px 16px; /* Tamanho do botão ajustado */
@@ -73,7 +83,7 @@
 }
 
 .stButton > button:hover {
-    background-color: #005F91; /* Tom mais escuro de azul ao passar o mouse */
+    background-color: #005F91; 
 }
 
 h1 {
