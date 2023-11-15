@@ -248,7 +248,7 @@ def contorno_imagem(imagem_array, salvar):
     # Convertendo a imagem sem as cores
     imagem = Image.open("imagem_resultado.png").convert("L")
     imagem = np.array(imagem)
-    print(imagem.shape)
+
     # Definindo o kernel do operador de Sobel
     sobel_x = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
     sobel_y = np.array([[-1, -2, -1], [0, 0, 0], [1, 2, 1]])
@@ -322,9 +322,59 @@ def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, 
     
     if transformacao == "Contorno imagem":
         contorno_imagem(imagem_array, salvar)
+    
+    if transformacao == "Teste":
+        proporcao_k = st.slider("Escolha o nível de ruído:", 2, 20, 2, key=f"slider {key_widgets} ruído")
+        filtro_ruido_svd(imagem_array, proporcao_k, tipo_imagem, salvar)
 
 
 def centralize_widget(widget, *args, **kwargs):
     col2 = st.columns([2,5,2])[1]
     with col2:
         widget(*args, **kwargs)
+
+
+def filtro_ruido_svd(imagem_array, prop_k, tipo_imagem="jpg", salvar=False):
+    
+    k = imagem_array.shape[1] // prop_k
+        
+    if tipo_imagem == "png":
+        matriz_correcao = np.array([1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]).reshape(4,3)
+        imagem = np.dot(imagem_array, matriz_correcao)
+    else:
+        imagem = imagem_array
+    
+    # Normalizando os dados da imagem usando Min-Max
+    imagem = (imagem - np.min(imagem)) / (np.max(imagem) - np.min(imagem))
+
+    # Realizando a decomposição SVD para cada entrada de cor e rconstruindo a imagem usando apenas os k maiores valores singulares 
+    array_r = imagem[:,:, 0]
+    U, Σ, V = np.linalg.svd(array_r)
+  
+    array_r_filtrado =  U[:, :k] @ np.diag(Σ[:k]) @ V[:k, :]
+    
+    array_g = imagem[:,:, 1]
+    U, Σ, V = np.linalg.svd(array_g)
+      
+    array_g_filtrado =  U[:, :k] @ np.diag(Σ[:k]) @ V[:k, :]
+    
+    array_b = imagem[:,:, 2]
+    U, Σ, V = np.linalg.svd(array_b)
+ 
+    array_b_filtrado =  U[:, :k] @ np.diag(Σ[:k]) @ V[:k, :]
+
+    imagem[:,:, 0] = array_r_filtrado
+    imagem[:,:, 1] = array_g_filtrado
+    imagem[:,:, 2] = array_b_filtrado
+    # Alterando o intervalo para 0 a 1
+    imagem_array_filtrado = np.clip(imagem, 0, 1)
+
+    # Convertendo de volta para o intervalo de 0 a 255
+    imagem_array_filtrado = imagem_array_filtrado * 255
+    
+    resultado = Image.fromarray(imagem_array_filtrado.astype("uint8"))
+
+    if salvar == True:
+        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    elif salvar == False:
+        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
