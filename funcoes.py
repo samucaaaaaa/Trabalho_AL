@@ -347,7 +347,7 @@ def filtro_ruido_svd(imagem_array, prop_k, tipo_imagem="jpg", salvar=False):
     # Normalizando os dados da imagem usando Min-Max
     imagem = (imagem - np.min(imagem)) / (np.max(imagem) - np.min(imagem))
 
-    # Realizando a decomposição SVD para cada entrada de cor e rconstruindo a imagem usando apenas os k maiores valores singulares 
+    # Realizando a decomposição SVD para cada entrada de cor e reconstruindo a imagem usando apenas os k maiores valores singulares 
     array_r = imagem[:,:, 0]
     U, Σ, V = np.linalg.svd(array_r)
   
