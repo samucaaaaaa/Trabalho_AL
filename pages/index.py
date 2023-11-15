@@ -47,9 +47,10 @@ with st.container():
 
         centralize_widget(st.image, imagem_original, caption="Imagem Original", width=377)
 
-        escolha_transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Teste", "Cor negativa", "Escurecer Imagem", "Filtrar cor", "Filtro blur",
-                                                               "Filtro cimento", "Filtro frio", "Filtro quente","Filtro sepia", "Imagem Preto e Branco",
-                                                              "Inverter imagem",  "Repetir imagem", "Rotacionar 90°","Redimensionar imagem"])
+        escolha_transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Teste", "Contorno imagem", "Cor negativa", "Escurecer Imagem", 
+                                                                "Filtrar cor", "Filtro blur", "Filtro cimento", "Filtro frio", "Filtro quente",
+                                                                "Filtro sepia", "Imagem Preto e Branco","Inverter imagem",  "Repetir imagem",
+                                                                "Rotacionar 90°","Redimensionar imagem"])
         
         salvamento = st.checkbox("Salvar", value=False)
         
