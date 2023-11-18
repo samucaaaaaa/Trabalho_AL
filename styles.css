@@ -82,7 +82,7 @@
 }
 
 .stButton > button {
-    background-color: #007ACC; 
+    background-color: #3CA6A6; 
     color: white;
     border: none;
     padding: 8px 16px; /* Tamanho do botão ajustado */
@@ -93,7 +93,7 @@
 }
 
 .stButton > button:hover {
-    background-color: #005F91; 
+    background-color: #215e5e; 
 }
 
 h1 {
