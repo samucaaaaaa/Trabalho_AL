@@ -1,16 +1,16 @@
 /*Para algumas letras no site*/
 .st-emotion-cache-xujc5b.e1nzilvr5 p {
-    color: black; 
+    color: #000000; 
 }
 
 /*Para a cor das letras da aba esquerda do site*/
 .st-emotion-cache-15zws4i.eczjsme5 {
-    color: white; 
+    color: #FFFFFF; 
 }
 
 /*Para a cor das letras dentro dos botões*/
 .st-c7.st-be.st-c8.st-c9.st-ca.st-bg.st-cb.st-cc.st-cd {
-    color: white; 
+    color: #FFFFFF; 
 }
 
 /*Para o botãio que aparece em cima da imagem*/
@@ -44,17 +44,17 @@ button[data-testid="StyledFullScreenButton"] {
 
 /*Para a setinha do select box*/
 .st-bf.st-bg.st-b4.st-d1.st-c2.st-d2.st-c7 svg {
-    fill: white !important;
+    fill: #FFFFFF !important;
 }
 
 /*Para o texto do select box*/
 .st-c8.st-bf.st-c9.st-ca.st-cb.st-bh.st-cc.st-cd.st-ce {
-    color: white !important;
+    color: #FFFFFF !important;
 }
 
 /*Para o símbolo do botão de upload*/
 .st-emotion-cache-1l1d1zw {
-    color: white !important;
+    color: #FFFFFF !important;
 }
 
 /*Para as letras superiores do botão de upload*/
@@ -64,7 +64,7 @@ button[data-testid="StyledFullScreenButton"] {
 
 /*Para as letras inferiores do botão de upload*/
 .st-emotion-cache-1t8kd5l {
-    color: white !important;
+    color: #FFFFFF !important;
 }
 
 /*Para a aba que fica na parte superior do site*/
@@ -75,7 +75,7 @@ button[data-testid="StyledFullScreenButton"] {
 /*Para as abas que ficam no canto esquerdo do site*/
 .st-emotion-cache-6qob1r[data-testid="stSidebarContent"] {
     background-color: #026773;
-    color: white;
+    color: #FFFFFF;
 }
 
 /*Para o fundo das páginas*/
@@ -94,7 +94,7 @@ button[data-testid="StyledFullScreenButton"] {
 /*Para o botão de link para o GitHub da página Motivation*/
 .stButton > button {
     background-color: #3CA6A6; 
-    color: white;
+    color: #FFFFFF;
     border: none;
     padding: 8px 16px; /* Tamanho do botão ajustado */
     border-radius: 8px;
@@ -105,7 +105,7 @@ button[data-testid="StyledFullScreenButton"] {
 
 .stButton > button:hover {
     background-color: #215e5e; 
-    color: white;  /* Especifica a cor do texto no estado :hover */
+    color: #FFFFFF;  /* Especifica a cor do texto no estado :hover */
 }
 
 /*Para os títulos*/
