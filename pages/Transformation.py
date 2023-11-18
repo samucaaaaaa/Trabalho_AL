@@ -21,7 +21,7 @@ with st.container():
     imagem_teste_array = np.array(imagem_teste)
     
     # Opções de transformação
-    transformacao_teste = st.selectbox("Escolha a transformação para o teste:", ["Nenhum", "Teste", "Contorno imagem", "Cor negativa", "Escurecer Imagem", "Filtrar cor", "Filtro blur",
+    transformacao_teste = st.selectbox("Escolha a transformação para o teste:", ["Nenhum", "Rotacionar imagem", "Transladar imagem", "Teste", "Contorno imagem", "Cor negativa", "Escurecer Imagem", "Filtrar cor", "Filtro blur",
                                                                "Filtro cimento", "Filtro frio", "Filtro quente","Filtro sepia", "Imagem Preto e Branco",
                                                               "Inverter imagem",  "Repetir imagem", "Rotacionar 90°","Redimensionar imagem"])
 
@@ -43,7 +43,7 @@ with st.container():
 
         centralize_widget(st.image, imagem_original, caption="Imagem Original", width=377)
 
-        escolha_transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Teste", "Contorno imagem", "Cor negativa", "Escurecer Imagem", 
+        escolha_transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Rotacionar imagem", "Transladar imagem", "Teste", "Contorno imagem", "Cor negativa", "Escurecer Imagem", 
                                                                 "Filtrar cor", "Filtro blur", "Filtro cimento", "Filtro frio", "Filtro quente",
                                                                 "Filtro sepia", "Imagem Preto e Branco","Inverter imagem",  "Repetir imagem",
                                                                 "Rotacionar 90°","Redimensionar imagem"])

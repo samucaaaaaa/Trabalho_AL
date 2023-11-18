@@ -1,3 +1,4 @@
+import cv2
 import numpy as np
 from PIL import Image
 import streamlit as st
@@ -270,6 +271,49 @@ def contorno_imagem(imagem_array, salvar):
         return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
     elif salvar == False:
         return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
+
+
+
+def transladar_imagem(imagem_array, translacao_x, translacao_y, salvar=False):
+    altura, largura, _ = imagem_array.shape
+
+    # Criando uma matriz de zeros com o mesmo formato da imagem
+    imagem_transladada = np.zeros_like(imagem_array)
+
+    # Calculando as novas coordenadas após a translação
+    nova_posicao_x = np.clip(np.arange(largura) + translacao_x, 0, largura - 1)
+    nova_posicao_y = np.clip(np.arange(altura) + translacao_y, 0, altura - 1)
+
+    # Usando broadcasting para atribuir os valores da imagem original para as novas coordenadas
+    imagem_transladada[nova_posicao_y[:, np.newaxis], nova_posicao_x, :] = imagem_array[:, :, :]
+
+    resultado = Image.fromarray(imagem_transladada.astype("uint8"))
+
+    if salvar == True:
+        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    elif salvar == False:
+        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
+
+def rotaciona_imagem(imagem_array, angulo, salvar=False):
+    altura, largura, _ = imagem_array.shape
+
+    # Calculando o centro da imagem
+    centro = (largura // 2, altura // 2)
+
+    # criando a matriz de rotação afim
+    matriz_rotacao = cv2.getRotationMatrix2D(centro, angulo, 1.0)
+
+    # Aplicando a rotação afim na imagem
+    imagem_rotacionada = cv2.warpAffine(imagem_array, matriz_rotacao, (largura, altura), flags=cv2.INTER_LINEAR)
+
+    resultado = Image.fromarray(imagem_rotacionada.astype("uint8"))
+
+    if salvar == True:
+        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    elif salvar == False:
+        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
 
 
 def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, key_widgets="teste"):
@@ -327,6 +371,15 @@ def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, 
         proporcao_k = st.slider("Escolha o nível de ruído:", 2, 20, 2, key=f"slider {key_widgets} ruído")
         filtro_ruido_svd(imagem_array, proporcao_k, tipo_imagem, salvar)
 
+    if transformacao == "Transladar imagem":
+        translacao_x = st.slider("Escolha o x:", -900, 900, 0)
+        translacao_y = st.slider("Escolha o y", -900, 900, 0)
+        transladar_imagem(imagem_array, translacao_x, translacao_y, salvar)  
+
+    if transformacao == "Rotacionar imagem":
+        angulo_rotacao = st.slider("Ângulo de Rotação", -180, 180, 0)    
+        rotaciona_imagem(imagem_array, angulo_rotacao, salvar)  
+
 
 def centralize_widget(widget, *args, **kwargs):
     col2 = st.columns([2,5,2])[1]
@@ -378,3 +431,8 @@ def filtro_ruido_svd(imagem_array, prop_k, tipo_imagem="jpg", salvar=False):
         return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
     elif salvar == False:
         return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
+
+
+
+
