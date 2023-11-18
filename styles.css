@@ -1,8 +1,3 @@
-/*Para a bolinha do slider*/
-.st-bg.st-b9.st-dw [role="slider"] {
-    background-color: red !important; 
-}
-
 /*Para a setinha do select box*/
 .st-bf.st-bg.st-b4.st-d1.st-c2.st-d2.st-c7 svg {
     fill: white !important;
@@ -15,16 +10,6 @@
 
 /* Estilo para o texto dentro do elemento small */
 .st-emotion-cache-1t8kd5l {
-    color: black; /* Ou a cor desejada */
-}
-
-/* Estilo para o texto do botão secundário quando clicado */
-.st-emotion-cache-dtawf9[data-testid="baseButton-secondary"]:active {
-    color: black; /* Manter a mesma cor quando clicado */
-}
-
-/* Estilo para o texto do botão secundário */
-.st-emotion-cache-dtawf9[data-testid="baseButton-secondary"] {
     color: black; /* Ou a cor desejada */
 }
 
