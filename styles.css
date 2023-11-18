@@ -1,3 +1,42 @@
+/*Para a cor das letras da aba esquerda do site*/
+.st-emotion-cache-15zws4i.eczjsme5 {
+    color: white; /* Substitua #FF0000 pela cor desejada em formato hexadecimal, RGB ou nome da cor */
+}
+
+/*Para a cor das letras dentro dos botões*/
+.st-c7.st-be.st-c8.st-c9.st-ca.st-bg.st-cb.st-cc.st-cd {
+    color: white; /* Substitua #FF0000 pela cor desejada em formato hexadecimal, RGB ou nome da cor */
+}
+
+/*Para o botãio que aparece em cima da imagem*/
+button[data-testid="StyledFullScreenButton"] {
+    display: none;
+}
+
+/*Para o link que fica acima dos títulos*/
+.st-emotion-cache-1xy3pbc {
+    display: none;
+}
+
+/*Para o "Made Streamlit"*/
+.st-emotion-cache-ot9ait {
+    display: none;
+}
+
+/*Para os 3 pontinhos no canto superior*/
+.st-emotion-cache-czk5ss {
+    display: none;
+}
+
+.st-emotion-cache-1a7s3xf {
+    display: none;
+}
+
+/*Para a palavra deploy no canto superior*/
+.st-emotion-cache-1wbqy5l.e17vllj40 {
+    display: none;
+}
+
 /*Para a setinha do select box*/
 .st-bf.st-bg.st-b4.st-d1.st-c2.st-d2.st-c7 svg {
     fill: white !important;
@@ -6,11 +45,6 @@
 /*Para o texto do select box*/
 .st-c8.st-bf.st-c9.st-ca.st-cb.st-bh.st-cc.st-cd.st-ce {
     color: white !important;
-}
-
-/* Estilo para o texto dentro do elemento small */
-.st-emotion-cache-1t8kd5l {
-    color: black; /* Ou a cor desejada */
 }
 
 /*Para o símbolo do botão de upload*/
@@ -47,11 +81,6 @@
     color: #000000;
 }
 
-/*Para o botão full screen da imagem*/
-.st-emotion-cache-6awftf[data-testid="StyledFullScreenButton"] {
-    visibility: hidden;
-}
-
 /*Para a linha no canto superior do site*/
 .st-emotion-cache-1dp5vir[data-testid="stDecoration"] {
     visibility: hidden;
@@ -76,6 +105,7 @@
 
 /*Para os títulos*/
 h1 {
+    font-size: 40px;
     color: #012E40;
     white-space: nowrap;
     border-bottom: 2px solid #012E40; /* Adiciona uma linha de borda semelhante à cor do botão */
