@@ -145,7 +145,7 @@ def filtro_cor(imagem_array, cor, tipo_imagem=None, salvar=False):
         proporcoes = [0.8,0.5,1.2]
     elif cor.lower() == "amarelo":
         proporcoes = [1.5, 1.2, 0.5]
-    elif cor.lower() == "agua":
+    elif cor.lower() == "água":
         proporcoes = [1,1.5,1.5]
     
     if tipo_imagem == "png":
@@ -327,56 +327,56 @@ def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, 
     if transformacao == "Rotacionar 90°":
         rotaciona_90(imagem_array, salvar)
 
-    if transformacao == "Filtro quente":
+    if transformacao == "Filtro Quente":
         filtro_quente(imagem_array, salvar)  
 
-    if transformacao == "Inverter imagem":
+    if transformacao == "Inverter Imagem":
         eixo = st.selectbox("Escolha como inverter a imagem:", ["Horizontal", "Vertical"], key=f"selectbox {key_widgets} inverção")
         inverte_imagem(imagem_array, eixo, salvar)       
 
-    if transformacao == "Filtro blur":
+    if transformacao == "Filtro Blur":
         intensidade = st.slider("Escolha a intensidade do blur:", 1, 10, 1, key=f"slider {key_widgets} blur")
         filtro_blur(imagem_array, intensidade, salvar)    
 
-    if transformacao == "Repetir imagem":
+    if transformacao == "Repetir Imagem":
         n_repeticoes = st.slider("Escolha o número repetições:", 1, 10, 1, key=f"slider {key_widgets} repetições")
         repete_imagem(imagem_array, n_repeticoes, salvar)
         
-    if transformacao == "Filtro frio":
+    if transformacao == "Filtro Frio":
         filtro_frio(imagem_array, salvar)  
 
-    if transformacao == "Redimensionar imagem":
+    if transformacao == "Redimensionar Imagem":
         altura = st.slider("Escolha a altura:", 100, 800,imagem_array.shape[0], step=20, key=f"slider {key_widgets} altura")
         largura = st.slider("Escolha a largura", 100, 1000, imagem_array.shape[1], step=20, key=f"slider {key_widgets} largura")
         redimensionar_imagem(imagem_array, altura, largura, salvar)
 
-    if transformacao == "Filtrar cor":
-        cor = st.selectbox("Escolha a cor do filtro:", ["agua", "amarelo", "azul", "roxo", "verde", "vermelho"], key=f"selectbox {key_widgets} filtra cor")
+    if transformacao == "Filtrar Cor":
+        cor = st.selectbox("Escolha a cor do filtro:", ["Água", "Amarelo", "Azul", "Roxo", "Verde", "Vermelho"], key=f"selectbox {key_widgets} filtra cor")
         filtro_cor(imagem_array, cor, tipo_imagem, salvar)   
 
-    if transformacao == "Filtro sepia":
+    if transformacao == "Filtro Sépia":
         filtro_sepia(imagem_array, tipo_imagem, salvar)
                         
-    if transformacao == "Cor negativa":
+    if transformacao == "Cor Negativa":
         cor_negativa(imagem_array, salvar)
     
-    if transformacao == "Filtro cimento":
+    if transformacao == "Filtro Cimento":
         shift = st.slider("Escolha o nível de relevo:", -5, 5, 0, key=f"slider {key_widgets} cimento")
         filtro_cimento(imagem_array, shift, salvar)
     
-    if transformacao == "Contorno imagem":
+    if transformacao == "Contorno Imagem":
         contorno_imagem(imagem_array, salvar)
     
     if transformacao == "Teste":
         proporcao_k = st.slider("Escolha o nível de ruído:", 2, 20, 2, key=f"slider {key_widgets} ruído")
         filtro_ruido_svd(imagem_array, proporcao_k, tipo_imagem, salvar)
 
-    if transformacao == "Transladar imagem":
+    if transformacao == "Transladar Imagem":
         translacao_x = st.slider("Escolha o x:", -900, 900, 0)
         translacao_y = st.slider("Escolha o y", -900, 900, 0)
         transladar_imagem(imagem_array, translacao_x, translacao_y, salvar)  
 
-    if transformacao == "Rotacionar imagem":
+    if transformacao == "Rotacionar Imagem":
         angulo_rotacao = st.slider("Ângulo de Rotação", -180, 180, 0)    
         rotaciona_imagem(imagem_array, angulo_rotacao, salvar)  
 
@@ -432,7 +432,3 @@ def filtro_ruido_svd(imagem_array, prop_k, tipo_imagem="jpg", salvar=False):
     elif salvar == False:
         return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
     
-
-
-
-

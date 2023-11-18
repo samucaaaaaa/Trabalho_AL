@@ -41,6 +41,6 @@ st.image([kaiky, guilherme, samuel], width=230, caption=["Kaiky Braga", "Guilher
 st.write("Olá! Somos alunos do 2° Período de Ciência de Dados da Escola de Matemática Aplicada da Fundação Getúlio Vargas, iniciamos este projeto com o objetivo de aplicar os conceitos de Álgebra Linear de forma prática, explorando aplicações de transformações lineares e propriedades de matrizes, tudo isso combinado com a versatilidade da programação em Python e a interatividade proporcionada pela biblioteca Streamlit.")
 
 with st.container():
-    if st.button("Clique para acessar o projeto no GitHub :)"):
+    if st.button("Clique para acessar o projeto no GitHub 💻"):
         site_url = "https://github.com/samucaaaaaa/Trabalho_AL"
         st.write(f'<meta http-equiv="refresh" content="0; url={site_url}" />', unsafe_allow_html=True)

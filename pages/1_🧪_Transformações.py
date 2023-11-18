@@ -9,20 +9,22 @@ with open("styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True) 
 
 with st.container():
-    st.title("Trasformações Lineares com imagens")
+    st.title("Trasformações Algébricas com Imagens")
     st.write("Aqui estão algumas transformações que podemos fazer com as imagens")
 
 with st.container():
-    st.write("Selecione o filtro para alterar a imagem!")
+    st.write("Selecione o filtro para alterar a imagem! 😉")
     centralize_widget(st.image, "imagens/paisagem.jpg", caption="Imagem Original", width=377)
 
     imagem_teste = Image.open("imagens/paisagem.jpg")
     imagem_teste_array = np.array(imagem_teste)
     
     # Opções de transformação
-    transformacao_teste = st.selectbox("Escolha a transformação para o teste:", ["Nenhum", "Rotacionar imagem", "Transladar imagem", "Teste", "Contorno imagem", "Cor negativa", "Escurecer Imagem", "Filtrar cor", "Filtro blur",
-                                                               "Filtro cimento", "Filtro frio", "Filtro quente","Filtro sepia", "Imagem Preto e Branco",
-                                                              "Inverter imagem",  "Repetir imagem", "Rotacionar 90°","Redimensionar imagem"])
+    transformacao_teste = st.selectbox("Escolha a transformação para o teste:", ["Nenhum", "Rotacionar Imagem", "Transladar Imagem", "Teste", "Contorno Imagem", 
+                                                                                "Cor Negativa", "Escurecer Imagem", "Filtrar Cor", "Filtro Blur",
+                                                                                "Filtro Cimento", "Filtro Frio", "Filtro Quente","Filtro Sépia", 
+                                                                                "Imagem Preto e Branco", "Inverter Imagem",  "Repetir Imagem", 
+                                                                                "Rotacionar 90°","Redimensionar Imagem"])
 
     # Botão para aplicar a transformação selecionada
     transformacao(transformacao_teste, imagem_teste_array, "jpg")
@@ -42,10 +44,11 @@ with st.container():
 
         centralize_widget(st.image, imagem_original, caption="Imagem Original", width=377)
 
-        escolha_transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Rotacionar imagem", "Transladar imagem", "Teste", "Contorno imagem", "Cor negativa", "Escurecer Imagem", 
-                                                                "Filtrar cor", "Filtro blur", "Filtro cimento", "Filtro frio", "Filtro quente",
-                                                                "Filtro sepia", "Imagem Preto e Branco","Inverter imagem",  "Repetir imagem",
-                                                                "Rotacionar 90°","Redimensionar imagem"])
+        escolha_transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Rotacionar Imagem", "Transladar Imagem", "Teste", "Contorno Imagem", 
+                                                                        "Cor Negativa", "Escurecer Imagem", "Filtrar Cor", "Filtro Blur",
+                                                                        "Filtro Cimento", "Filtro Frio", "Filtro Quente","Filtro Sépia", 
+                                                                        "Imagem Preto e Branco", "Inverter Imagem",  "Repetir Imagem", 
+                                                                        "Rotacionar 90°","Redimensionar Imagem"])
         
         salvamento = st.checkbox("Salvar", value=False)
         
