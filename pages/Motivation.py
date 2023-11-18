@@ -4,7 +4,7 @@ from PIL import Image, ImageDraw, ImageOps
 st.set_page_config(page_title="Motivação")
 
 with open("styles.css") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True) 
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)  
 
 st.title("Motivação")
 

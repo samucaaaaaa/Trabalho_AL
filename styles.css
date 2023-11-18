@@ -1,71 +1,62 @@
-/*Para as letras da aba esquerda do site*/
-.st-emotion-cache-nziaof.eczjsme6[data-testid="stSidebarNavLink"] .st-emotion-cache-pkbazv.eczjsme5 {
+/*Para a bolinha do slider*/
+.st-bg.st-b9.st-dw [role="slider"] {
+    background-color: red !important; 
+}
+
+/*Para a setinha do select box*/
+.st-bf.st-bg.st-b4.st-d1.st-c2.st-d2.st-c7 svg {
+    fill: white !important;
+}
+
+/*Para o texto do select box*/
+.st-c8.st-bf.st-c9.st-ca.st-cb.st-bh.st-cc.st-cd.st-ce {
+    color: white !important;
+}
+
+/* Estilo para o texto dentro do elemento small */
+.st-emotion-cache-1t8kd5l {
+    color: black; /* Ou a cor desejada */
+}
+
+/* Estilo para o texto do botão secundário quando clicado */
+.st-emotion-cache-dtawf9[data-testid="baseButton-secondary"]:active {
+    color: black; /* Manter a mesma cor quando clicado */
+}
+
+/* Estilo para o texto do botão secundário */
+.st-emotion-cache-dtawf9[data-testid="baseButton-secondary"] {
+    color: black; /* Ou a cor desejada */
+}
+
+/*Para o símbolo do botão de upload*/
+.st-emotion-cache-1l1d1zw {
+    color: white !important;
+}
+
+/*Para as letras superiores do botão de upload*/
+.st-emotion-cache-u8hs99[data-testid="stFileDropzoneInstructions"] {
+    color: #FFFFFF;
+}
+
+/*Para as letras inferiores do botão de upload*/
+.st-emotion-cache-1t8kd5l {
+    color: white !important;
+}
+
+/*Para a aba que fica na parte superior do site*/
+.st-emotion-cache-uc1cuc[data-testid="stHeader"] {
+    background-color: #F2E3D5;
+}
+
+/*Para as abas que ficam no canto esquerdo do site*/
+.st-emotion-cache-6qob1r[data-testid="stSidebarContent"] {
+    background-color: #026773;
     color: white;
 }
 
-/*Para o botão com x na aba*/
-.st-emotion-cache-ztfqz8[data-testid="baseButton-header"] {
-    color: white;
-}
-
-/*Para a página do Home*/ 
-.st-emotion-cache-6qob1r[data-testid="stSidebarContent"] {
-    background-color: #012E40;
-    color: #000000;
-}
-
-.st-emotion-cache-1y4p8pa[data-testid="block-container"] {
-    background-color: #F2E3D5;
-    color: #000000;
-}
-
-.st-emotion-cache-1wrcr25[data-testid="stAppViewContainer"] {
-    background-color: #F2E3D5;
-    color: #000000;
-}
-
-.st-emotion-cache-18ni7ap[data-testid="stHeader"] {
-    background-color: #F2E3D5;
-    color: #000000;
-}
-
-/*Para a página do Transformation*/ 
-.st-emotion-cache-6qob1r[data-testid="stSidebarContent"] {
-    background-color: #012E40;
-    color: #000000;
-}
-
-.st-emotion-cache-1y4p8pa[data-testid="block-container"] {
-    background-color: #F2E3D5;
-    color: #000000;
-}
-
-.st-emotion-cache-1wrcr25[data-testid="stAppViewContainer"] {
-    background-color: #F2E3D5;
-    color: #000000;
-}
-
-.st-emotion-cache-18ni7ap[data-testid="stHeader"] {
-    background-color: #F2E3D5;
-    color: #000000;
-}
-
-/*Para a página da Motivation*/ 
-.st-emotion-cache-6qob1r[data-testid="stSidebarContent"] {
-    background-color: #012E40;
-    color: #000000;
-}
-
-.st-emotion-cache-1y4p8pa[data-testid="block-container"] {
-    background-color: #F2E3D5;
-    color: #000000;
-}
-
-.st-emotion-cache-1wrcr25[data-testid="stAppViewContainer"] {
-    background-color: #F2E3D5;
-    color: #000000;
-}
-
+/*Para o fundo das páginas*/
+.st-emotion-cache-1y4p8pa[data-testid="block-container"],
+.st-emotion-cache-1wrcr25[data-testid="stAppViewContainer"],
 .st-emotion-cache-18ni7ap[data-testid="stHeader"] {
     background-color: #F2E3D5;
     color: #000000;
@@ -81,6 +72,7 @@
     visibility: hidden;
 }
 
+/*Para o botão de link para o GitHub da página Motivation*/
 .stButton > button {
     background-color: #3CA6A6; 
     color: white;
@@ -89,18 +81,21 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease; /* Adicionada a transição para a cor do texto */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px black;
 }
 
 .stButton > button:hover {
     background-color: #215e5e; 
+    color: white;  /* Especifica a cor do texto no estado :hover */
 }
 
+/*Para os títulos*/
 h1 {
-    color: #3CA6A6;
+    color: #012E40;
     white-space: nowrap;
-    border-bottom: 2px solid #3CA6A6; /* Adiciona uma linha de borda semelhante à cor do botão */
+    border-bottom: 2px solid #012E40; /* Adiciona uma linha de borda semelhante à cor do botão */
     padding-bottom: 10px; /* Adiciona espaço entre o título e a borda */
     margin-bottom: 20px; /* Adiciona espaço abaixo do título */
     text-align: center;
 }
+

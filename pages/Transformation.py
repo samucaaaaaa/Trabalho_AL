@@ -3,17 +3,16 @@ from PIL import Image
 import streamlit as st
 from funcoes import transformacao, centralize_widget
 
-st.set_page_config(page_title="Trabalho de Álgebra Linear")
+st.set_page_config(page_title="Transformações Lineares")
 
 with open("styles.css") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True) 
 
 with st.container():
     st.title("Trasformações Lineares com imagens")
     st.write("Aqui estão algumas transformações que podemos fazer com as imagens")
 
 with st.container():
-    st.write("---")
     st.write("Selecione o filtro para alterar a imagem!")
     centralize_widget(st.image, "imagens/paisagem.jpg", caption="Imagem Original", width=377)
 
