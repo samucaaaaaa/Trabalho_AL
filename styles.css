@@ -1,63 +1,73 @@
+/*Para as letras da aba esquerda do site*/
+.st-emotion-cache-nziaof.eczjsme6[data-testid="stSidebarNavLink"] .st-emotion-cache-pkbazv.eczjsme5 {
+    color: white;
+}
+
+/*Para o botão com x na aba*/
+.st-emotion-cache-ztfqz8[data-testid="baseButton-header"] {
+    color: white;
+}
+
 /*Para a página do Home*/ 
 .st-emotion-cache-6qob1r[data-testid="stSidebarContent"] {
-    background-color: #b82c2c;
+    background-color: #012E40;
     color: #000000;
 }
 
 .st-emotion-cache-1y4p8pa[data-testid="block-container"] {
-    background-color: #f1b0b0;
+    background-color: #F2E3D5;
     color: #000000;
 }
 
 .st-emotion-cache-1wrcr25[data-testid="stAppViewContainer"] {
-    background-color: #f1b0b0;
+    background-color: #F2E3D5;
     color: #000000;
 }
 
 .st-emotion-cache-18ni7ap[data-testid="stHeader"] {
-    background-color: #f1b0b0;
+    background-color: #F2E3D5;
     color: #000000;
 }
 
 /*Para a página do Transformation*/ 
 .st-emotion-cache-6qob1r[data-testid="stSidebarContent"] {
-    background-color: #b82c2c;
+    background-color: #012E40;
     color: #000000;
 }
 
 .st-emotion-cache-1y4p8pa[data-testid="block-container"] {
-    background-color: #f1b0b0;
+    background-color: #F2E3D5;
     color: #000000;
 }
 
 .st-emotion-cache-1wrcr25[data-testid="stAppViewContainer"] {
-    background-color: #f1b0b0;
+    background-color: #F2E3D5;
     color: #000000;
 }
 
 .st-emotion-cache-18ni7ap[data-testid="stHeader"] {
-    background-color: #f1b0b0;
+    background-color: #F2E3D5;
     color: #000000;
 }
 
 /*Para a página da Motivation*/ 
 .st-emotion-cache-6qob1r[data-testid="stSidebarContent"] {
-    background-color: #b82c2c;
+    background-color: #012E40;
     color: #000000;
 }
 
 .st-emotion-cache-1y4p8pa[data-testid="block-container"] {
-    background-color: #f1b0b0;
+    background-color: #F2E3D5;
     color: #000000;
 }
 
 .st-emotion-cache-1wrcr25[data-testid="stAppViewContainer"] {
-    background-color: #f1b0b0;
+    background-color: #F2E3D5;
     color: #000000;
 }
 
 .st-emotion-cache-18ni7ap[data-testid="stHeader"] {
-    background-color: #f1b0b0;
+    background-color: #F2E3D5;
     color: #000000;
 }
 
@@ -87,10 +97,10 @@
 }
 
 h1 {
+    color: #3CA6A6;
     white-space: nowrap;
-    border-bottom: 2px solid #595757; /* Adiciona uma linha de borda semelhante à cor do botão */
+    border-bottom: 2px solid #3CA6A6; /* Adiciona uma linha de borda semelhante à cor do botão */
     padding-bottom: 10px; /* Adiciona espaço entre o título e a borda */
     margin-bottom: 20px; /* Adiciona espaço abaixo do título */
     text-align: center;
 }
-
