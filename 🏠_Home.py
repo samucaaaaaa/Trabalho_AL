@@ -5,7 +5,7 @@ st.set_page_config(page_title="Introdução")
 with open("styles.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-st.title("Visual Matrix🌟")
+st.title("Visua Matrix🌟")
 
 st.subheader("Dê um toque estiloso às suas fotos com facilidade")
 st.write("Olá! Bem-vindo ao Visual Matrix, o lugar perfeito para editar as suas fotos! 📸")
