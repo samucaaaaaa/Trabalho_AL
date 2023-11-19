@@ -273,8 +273,6 @@ def contorno_imagem(imagem_array, salvar):
         return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
     
 
-
-
 def transladar_imagem(imagem_array, translacao_x, translacao_y, salvar=False):
     altura, largura, _ = imagem_array.shape
 
@@ -372,12 +370,12 @@ def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, 
         filtro_ruido_svd(imagem_array, proporcao_k, tipo_imagem, salvar)
 
     if transformacao == "Transladar Imagem":
-        translacao_x = st.slider("Escolha o x:", -900, 900, 0)
-        translacao_y = st.slider("Escolha o y", -900, 900, 0)
+        translacao_x = st.slider(f"Escolha o X{key_widgets}:", -900, 900, 0, key=f"translacao_x{key_widgets}")
+        translacao_y = st.slider(f"Escolha o Y{key_widgets}:", -900, 900, 0, key=f"translacao_y{key_widgets}")
         transladar_imagem(imagem_array, translacao_x, translacao_y, salvar)  
 
     if transformacao == "Rotacionar Imagem":
-        angulo_rotacao = st.slider("Ângulo de Rotação", -180, 180, 0)    
+        angulo_rotacao = st.slider("Ângulo de Rotação", -180, 180, 0, key=f"angulo_rotacao{key_widgets}")    
         rotaciona_imagem(imagem_array, angulo_rotacao, salvar)  
 
 
