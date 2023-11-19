@@ -370,8 +370,8 @@ def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, 
         filtro_ruido_svd(imagem_array, proporcao_k, tipo_imagem, salvar)
 
     if transformacao == "Transladar Imagem":
-        translacao_x = st.slider(f"Escolha o X{key_widgets}:", -900, 900, 0, key=f"translacao_x{key_widgets}")
-        translacao_y = st.slider(f"Escolha o Y{key_widgets}:", -900, 900, 0, key=f"translacao_y{key_widgets}")
+        translacao_x = st.slider(f"Escolha o X:", -900, 900, 0, key=f"translacao_x{key_widgets}")
+        translacao_y = st.slider(f"Escolha o Y:", -900, 900, 0, key=f"translacao_y{key_widgets}")
         transladar_imagem(imagem_array, translacao_x, translacao_y, salvar)  
 
     if transformacao == "Rotacionar Imagem":
