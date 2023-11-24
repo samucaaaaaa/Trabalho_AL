@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 from PIL import Image
 import streamlit as st
-# TODO: Tratar exceções com st.write no lugar de print
 
 def escurecer_imagem(imagem_array, pct_escurecimento, salvar=False):
 
@@ -400,19 +399,19 @@ def filtro_ruido_svd(imagem_array, prop_k, tipo_imagem="jpg", salvar=False):
 
     # Realizando a decomposição SVD para cada entrada de cor e reconstruindo a imagem usando apenas os k maiores valores singulares 
     array_r = imagem[:,:, 0]
-    U, Σ, V = np.linalg.svd(array_r)
+    U, Σ, V_T = np.linalg.svd(array_r)
   
-    array_r_filtrado =  U[:, :k] @ np.diag(Σ[:k]) @ V[:k, :]
+    array_r_filtrado =  U[:, :k] @ np.diag(Σ[:k]) @ V_T[:k, :]
     
     array_g = imagem[:,:, 1]
-    U, Σ, V = np.linalg.svd(array_g)
+    U, Σ, V_T = np.linalg.svd(array_g)
       
-    array_g_filtrado =  U[:, :k] @ np.diag(Σ[:k]) @ V[:k, :]
+    array_g_filtrado =  U[:, :k] @ np.diag(Σ[:k]) @ V_T[:k, :]
     
     array_b = imagem[:,:, 2]
-    U, Σ, V = np.linalg.svd(array_b)
+    U, Σ, V_T = np.linalg.svd(array_b)
  
-    array_b_filtrado =  U[:, :k] @ np.diag(Σ[:k]) @ V[:k, :]
+    array_b_filtrado =  U[:, :k] @ np.diag(Σ[:k]) @ V_T[:k, :]
 
     imagem[:,:, 0] = array_r_filtrado
     imagem[:,:, 1] = array_g_filtrado
