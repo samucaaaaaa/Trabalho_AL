@@ -10,10 +10,10 @@ def escurecer_imagem(imagem_array, pct_escurecimento, salvar=False):
 
     resultado = Image.fromarray(imagem_array.astype("uint8"))
 
+    centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+        resultado.save("imagem_resultado.png")
 
 
 def imagem_preto_branco(imagem_array, salvar=False):
@@ -22,10 +22,10 @@ def imagem_preto_branco(imagem_array, salvar=False):
     
     resultado = Image.fromarray(imagem_array.astype("uint8"))
 
+    centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+        resultado.save("imagem_resultado.png")
 
 
 def rotaciona_90(imagem_array, salvar=False):
@@ -34,10 +34,10 @@ def rotaciona_90(imagem_array, salvar=False):
     
     resultado = Image.fromarray(imagem_array.astype("uint8"))
     
+    centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+        resultado.save("imagem_resultado.png")
 
 
 def filtro_quente(imagem_array, salvar=False):
@@ -47,10 +47,10 @@ def filtro_quente(imagem_array, salvar=False):
 
     resultado = Image.fromarray(imagem_array.astype("uint8"))
 
+    centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+        resultado.save("imagem_resultado.png")
 
 
 def inverte_imagem(imagem_array, eixo, salvar=False):
@@ -61,12 +61,12 @@ def inverte_imagem(imagem_array, eixo, salvar=False):
         eixo = 1
     imagem_invertida_array = np.flip(imagem_array, eixo)
 
-    imagem_invertida = Image.fromarray(imagem_invertida_array.astype("uint8"))
+    resultado = Image.fromarray(imagem_invertida_array.astype("uint8"))
 
+    centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
     if salvar == True:
-        return imagem_invertida.save("imagem_resultado.png"), centralize_widget(st.image, imagem_invertida, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, imagem_invertida, caption="Imagem Alterada", width=377)
+        resultado.save("imagem_resultado.png")
 
 
 def repete_imagem(imagem_array, num_repeticoes, salvar=False):
@@ -74,25 +74,24 @@ def repete_imagem(imagem_array, num_repeticoes, salvar=False):
     imagem_array = imagem_array[:, :, :3]
     imagem_repeticoes_array = np.concatenate([imagem_array] * num_repeticoes, axis=1)
     
-    imagem_repeticoes = Image.fromarray(imagem_repeticoes_array)
+    resultado = Image.fromarray(imagem_repeticoes_array)
 
+    centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
     if salvar == True:
-        return imagem_repeticoes.save("imagem_resultado.png"), centralize_widget(st.image, imagem_repeticoes, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, imagem_repeticoes, caption="Imagem Alterada", width=377)
-
+        resultado.save("imagem_resultado.png")
 
 def filtro_frio(imagem_array, salvar=False):
 
     imagem_array[:,:,2] = np.clip(imagem_array[:,:,2] * 1.2, 0, 255)
     imagem_array[:,:,0] = np.clip(imagem_array[:,:,0] * 0.8, 0, 255)
 
-    imagem_filtrada = Image.fromarray(imagem_array.astype("uint8"))
+    resultado = Image.fromarray(imagem_array.astype("uint8"))
 
+    centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
     if salvar == True:
-        return imagem_filtrada.save("imagem_resultado.png"), centralize_widget(st.image, imagem_filtrada, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, imagem_filtrada, caption="Imagem Alterada", width=377)
+        resultado.save("imagem_resultado.png")
 
 
 def redimensionar_imagem(imagem_array, altura, largura, salvar=False, apenas_salvamento=False):
@@ -105,12 +104,13 @@ def redimensionar_imagem(imagem_array, altura, largura, salvar=False, apenas_sal
     imagem_redimensionada_array = imagem_array[np.ix_(y_indices, x_indices)]
     
     imagem_redimensionada = Image.fromarray(imagem_redimensionada_array.astype("uint8"))
+
+    centralize_widget(st.image, imagem_redimensionada, caption="Imagem Alterada", width=377)
+
     if apenas_salvamento == True:
-        return imagem_redimensionada.save("imagem_resultado.png")
+        imagem_redimensionada.save("imagem_resultado.png")
     elif salvar == True:
-        return imagem_redimensionada.save("imagem_resultado.png"), centralize_widget(st.image, imagem_redimensionada, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, imagem_redimensionada, caption="Imagem Alterada", width=377)
+        imagem_redimensionada.save("imagem_resultado.png")
 
 
 def filtro_blur(imagem_array, qnt_blur, salvar=False):
@@ -124,12 +124,12 @@ def filtro_blur(imagem_array, qnt_blur, salvar=False):
     imagem = Image.open("imagem_resultado.png")
     imagem_borrada_array = np.array(imagem)
 
-    imagem_borrada = Image.fromarray(imagem_borrada_array.astype("uint8"))
+    resultado = Image.fromarray(imagem_borrada_array.astype("uint8"))
 
+    centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
     if salvar == True:
-        return imagem_borrada.save("imagem_resultado.png"), centralize_widget(st.image, imagem_borrada, caption="Imagem Alterada", width=377)
-    else:
-        return centralize_widget(st.image, imagem_borrada, caption="Imagem Alterada", width=377)
+        resultado.save("imagem_resultado.png")
     
 
 def filtro_cor(imagem_array, cor, tipo_imagem=None, salvar=False):
@@ -165,10 +165,10 @@ def filtro_cor(imagem_array, cor, tipo_imagem=None, salvar=False):
     else:
         resultado = Image.fromarray(imagem_transformada.astype("uint8"))
 
+        centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
         if salvar == True:
-            return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
-        elif salvar == False:
-            return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+            resultado.save("imagem_resultado.png")
 
 
 def filtro_sepia(imagem_array, tipo_imagem=None, salvar=False):
@@ -184,7 +184,7 @@ def filtro_sepia(imagem_array, tipo_imagem=None, salvar=False):
         imagem_transformada = np.dot(imagem,sepia_filter)
         imagem_transformada = np.clip(imagem_transformada,0,255)
     except Exception:
-        return f"A imagem passada não é do tipo {tipo_imagem}"
+        st.write(f"A imagem passada não é do tipo {tipo_imagem}")
     else:
         # Aumentando o amarelo para se adequar ao filtro sépia
         imagem_transformada[..., 0] *= 1.2
@@ -193,10 +193,10 @@ def filtro_sepia(imagem_array, tipo_imagem=None, salvar=False):
         
         resultado = Image.fromarray(imagem_transformada.astype("uint8"))
 
-    if salvar == True:
-        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+        centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
+        if salvar == True:
+            resultado.save("imagem_resultado.png")
 
 
 def cor_negativa(imagem_array, salvar=False):
@@ -207,10 +207,10 @@ def cor_negativa(imagem_array, salvar=False):
     
     resultado = Image.fromarray(imagem_array.astype("uint8"))
 
+    centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+        resultado.save("imagem_resultado.png")
 
 
 def filtro_cimento(imagem_array, shift, salvar=False):
@@ -234,10 +234,10 @@ def filtro_cimento(imagem_array, shift, salvar=False):
 
     resultado = Image.fromarray(imagem_cimentada)
 
+    centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+        resultado.save("imagem_resultado.png")
 
 
 def contorno_imagem(imagem_array, salvar):
@@ -266,10 +266,10 @@ def contorno_imagem(imagem_array, salvar):
 
     resultado = Image.fromarray(bordas.astype(np.uint8))
 
+    centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+        resultado.save("imagem_resultado.png")
     
 
 def transladar_imagem(imagem_array, translacao_x, translacao_y, salvar=False):
@@ -287,10 +287,10 @@ def transladar_imagem(imagem_array, translacao_x, translacao_y, salvar=False):
 
     resultado = Image.fromarray(imagem_transladada.astype("uint8"))
 
+    centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+        resultado.save("imagem_resultado.png")
     
 
 def rotaciona_imagem(imagem_array, angulo, salvar=False):
@@ -307,10 +307,70 @@ def rotaciona_imagem(imagem_array, angulo, salvar=False):
 
     resultado = Image.fromarray(imagem_rotacionada.astype("uint8"))
 
+    centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
     if salvar == True:
-        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+        resultado.save("imagem_resultado.png")
+
+
+def compressão_imagem_svd(imagem_array, prop_k, tipo_imagem="jpg", salvar=False):
+    
+    k = imagem_array.shape[1] // prop_k
+        
+    if tipo_imagem == "png":
+        matriz_correcao = np.array([1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]).reshape(4,3)
+        imagem = np.dot(imagem_array, matriz_correcao)
+    
+    else:
+        imagem = imagem_array
+    
+    # Normalizando os dados da imagem usando Min-Max
+    imagem = (imagem - np.min(imagem)) / (np.max(imagem) - np.min(imagem))
+
+    # Realizando a decomposição SVD para cada entrada de cor e reconstruindo a imagem usando apenas os k maiores valores singulares 
+    array_r = imagem[:,:, 0]
+    U, Σ, V_T = np.linalg.svd(array_r)
+  
+    array_r_filtrado =  U[:, :k] @ np.diag(Σ[:k]) @ V_T[:k, :]
+    
+    array_g = imagem[:,:, 1]
+    U, Σ, V_T = np.linalg.svd(array_g)
+      
+    array_g_filtrado =  U[:, :k] @ np.diag(Σ[:k]) @ V_T[:k, :]
+    
+    array_b = imagem[:,:, 2]
+    U, Σ, V_T = np.linalg.svd(array_b)
+ 
+    array_b_filtrado =  U[:, :k] @ np.diag(Σ[:k]) @ V_T[:k, :]
+
+    imagem[:,:, 0] = array_r_filtrado
+    imagem[:,:, 1] = array_g_filtrado
+    imagem[:,:, 2] = array_b_filtrado
+    # Alterando o intervalo para 0 a 1
+    imagem_array_filtrado = np.clip(imagem, 0, 1)
+
+    # Convertendo de volta para o intervalo de 0 a 255
+    imagem_array_filtrado = imagem_array_filtrado * 255
+    
+    resultado = Image.fromarray(imagem_array_filtrado.astype("uint8"))
+
+    centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
+    
+    if salvar == True:
+        try:
+            resultado.save("imagem_resultado.jpg")
+            with open("imagem_resultado.jpg", "rb") as imagem_resultado:
+                imagem_bytes = imagem_resultado.read()
+
+            st.download_button("Confirmar o Download da nova imagem", imagem_bytes, "imagem_resultado.jpg", "image/jpg")
+
+        except OSError:
+            resultado.save("imagem_resultado.png") 
+            
+            with open("imagem_resultado.png", "rb") as imagem_resultado:
+                imagem_bytes = imagem_resultado.read()
+
+            st.download_button("Confirmar o Download da nova imagem", imagem_bytes, "imagem_resultado.png", "image/png") 
 
 
 def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, key_widgets="teste"):
@@ -364,9 +424,9 @@ def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, 
     if transformacao == "Contorno Imagem":
         contorno_imagem(imagem_array, salvar)
     
-    if transformacao == "Teste":
-        proporcao_k = st.slider("Escolha o nível de ruído:", 2, 20, 2, key=f"slider {key_widgets} ruído")
-        filtro_ruido_svd(imagem_array, proporcao_k, tipo_imagem, salvar)
+    if transformacao == "Comprimir imagem":
+        proporcao_k = st.slider("Escolha o nível de compressão:", 2, 20, 2, key=f"slider {key_widgets} compressão")
+        compressão_imagem_svd(imagem_array, proporcao_k, tipo_imagem, salvar)
 
     if transformacao == "Transladar Imagem":
         translacao_x = st.slider(f"Escolha o X:", -900, 900, 0, key=f"translacao_x{key_widgets}")
@@ -382,50 +442,3 @@ def centralize_widget(widget, *args, **kwargs):
     col2 = st.columns([2,5,2])[1]
     with col2:
         widget(*args, **kwargs)
-
-
-def filtro_ruido_svd(imagem_array, prop_k, tipo_imagem="jpg", salvar=False):
-    
-    k = imagem_array.shape[1] // prop_k
-        
-    if tipo_imagem == "png":
-        matriz_correcao = np.array([1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0]).reshape(4,3)
-        imagem = np.dot(imagem_array, matriz_correcao)
-    else:
-        imagem = imagem_array
-    
-    # Normalizando os dados da imagem usando Min-Max
-    imagem = (imagem - np.min(imagem)) / (np.max(imagem) - np.min(imagem))
-
-    # Realizando a decomposição SVD para cada entrada de cor e reconstruindo a imagem usando apenas os k maiores valores singulares 
-    array_r = imagem[:,:, 0]
-    U, Σ, V_T = np.linalg.svd(array_r)
-  
-    array_r_filtrado =  U[:, :k] @ np.diag(Σ[:k]) @ V_T[:k, :]
-    
-    array_g = imagem[:,:, 1]
-    U, Σ, V_T = np.linalg.svd(array_g)
-      
-    array_g_filtrado =  U[:, :k] @ np.diag(Σ[:k]) @ V_T[:k, :]
-    
-    array_b = imagem[:,:, 2]
-    U, Σ, V_T = np.linalg.svd(array_b)
- 
-    array_b_filtrado =  U[:, :k] @ np.diag(Σ[:k]) @ V_T[:k, :]
-
-    imagem[:,:, 0] = array_r_filtrado
-    imagem[:,:, 1] = array_g_filtrado
-    imagem[:,:, 2] = array_b_filtrado
-    # Alterando o intervalo para 0 a 1
-    imagem_array_filtrado = np.clip(imagem, 0, 1)
-
-    # Convertendo de volta para o intervalo de 0 a 255
-    imagem_array_filtrado = imagem_array_filtrado * 255
-    
-    resultado = Image.fromarray(imagem_array_filtrado.astype("uint8"))
-
-    if salvar == True:
-        return resultado.save("imagem_resultado.png"), centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
-    elif salvar == False:
-        return centralize_widget(st.image, resultado, caption="Imagem Alterada", width=377)
-    

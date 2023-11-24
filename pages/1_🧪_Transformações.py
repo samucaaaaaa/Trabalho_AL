@@ -1,7 +1,7 @@
 import numpy as np
 from PIL import Image
 import streamlit as st
-from funcoes import transformacao, centralize_widget
+from funcoes import transformacao, compressão_imagem_svd, centralize_widget
 
 st.set_page_config(page_title="Transformações Lineares")
 
@@ -20,11 +20,11 @@ with st.container():
     imagem_teste_array = np.array(imagem_teste)
     
     # Opções de transformação
-    transformacao_teste = st.selectbox("Escolha a transformação para o teste:", ["Nenhum", "Rotacionar Imagem", "Transladar Imagem", "Teste", "Contorno Imagem", 
-                                                                                "Cor Negativa", "Escurecer Imagem", "Filtrar Cor", "Filtro Blur",
-                                                                                "Filtro Cimento", "Filtro Frio", "Filtro Quente","Filtro Sépia", 
-                                                                                "Imagem Preto e Branco", "Inverter Imagem",  "Repetir Imagem", 
-                                                                                "Rotacionar 90°","Redimensionar Imagem"])
+    transformacao_teste = st.selectbox("Escolha a transformação para o teste:", ["Nenhum", "Comprimir imagem", "Contorno Imagem", "Cor Negativa", 
+                                                                                "Escurecer Imagem", "Filtrar Cor", "Filtro Blur","Filtro Cimento", 
+                                                                                "Filtro Frio", "Filtro Quente","Filtro Sépia", "Imagem Preto e Branco", 
+                                                                                "Inverter Imagem",  "Repetir Imagem", "Redimensionar Imagem", 
+                                                                                "Rotacionar 90°", "Rotacionar Imagem", "Transladar Imagem"])
 
     # Botão para aplicar a transformação selecionada
     transformacao(transformacao_teste, imagem_teste_array, "jpg")
@@ -44,23 +44,28 @@ with st.container():
 
         centralize_widget(st.image, imagem_original, caption="Imagem Original", width=377)
 
-        escolha_transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Rotacionar Imagem", "Transladar Imagem", "Teste", "Contorno Imagem", 
-                                                                        "Cor Negativa", "Escurecer Imagem", "Filtrar Cor", "Filtro Blur",
-                                                                        "Filtro Cimento", "Filtro Frio", "Filtro Quente","Filtro Sépia", 
-                                                                        "Imagem Preto e Branco", "Inverter Imagem",  "Repetir Imagem", 
-                                                                        "Rotacionar 90°","Redimensionar Imagem"])
+        escolha_transformacao = st.selectbox("Escolha a transformação:", ["Nenhum", "Comprimir imagem", "Contorno Imagem", "Cor Negativa", 
+                                                                        "Escurecer Imagem", "Filtrar Cor", "Filtro Blur","Filtro Cimento", 
+                                                                        "Filtro Frio", "Filtro Quente","Filtro Sépia", "Imagem Preto e Branco", 
+                                                                        "Inverter Imagem",  "Repetir Imagem", "Redimensionar Imagem", 
+                                                                        "Rotacionar 90°", "Rotacionar Imagem", "Transladar Imagem"])
         
         salvamento = st.checkbox("Salvar", value=False)
+                
+        if escolha_transformacao == "Comprimir imagem" and salvamento == True:
+            proporcao_k = st.slider("Escolha o nível de ruído:", 2, 20, 2, key=f"slider compressão imagem")
+            compressão_imagem_svd(imagem_array, proporcao_k, salvar=salvamento)   
         
-        transformacao(escolha_transformacao, imagem_array, salvar=salvamento, key_widgets="alter")
-        
-        if salvamento == True and escolha_transformacao == "Nenhum":
-            st.write("A nova imagem será salva como 'imagem_resultado.png'")
-        elif salvamento == True and escolha_transformacao != "Nenhum": 
-            with open("imagem_resultado.png", "rb") as imagem_resultado:
-                imagem_bytes = imagem_resultado.read()
+        else:            
+            transformacao(escolha_transformacao, imagem_array, salvar=salvamento, key_widgets="alter")
+            
+            if salvamento == True and escolha_transformacao == "Nenhum":
+                st.write("A nova imagem será salva como 'imagem_resultado.png'")
+            elif salvamento == True and escolha_transformacao != "Nenhum": 
+                with open("imagem_resultado.png", "rb") as imagem_resultado:
+                    imagem_bytes = imagem_resultado.read()
 
-            # Criando um botão de download para a imagem
-            st.download_button("Confirmar o Download da nova imagem", imagem_bytes, "imagem_resultado.png", "image/png")
+                # Criando um botão de download para a imagem
+                st.download_button("Confirmar o Download da nova imagem", imagem_bytes, "imagem_resultado.png", "image/png")
 
         
