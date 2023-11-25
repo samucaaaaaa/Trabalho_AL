@@ -424,7 +424,7 @@ def transformacao(transformacao, imagem_array, tipo_imagem="jpg", salvar=False, 
     if transformacao == "Contorno Imagem":
         contorno_imagem(imagem_array, salvar)
     
-    if transformacao == "Comprimir imagem":
+    if transformacao == "Comprimir Imagem":
         proporcao_k = st.slider("Escolha o nível de compressão:", 2, 20, 2, key=f"slider {key_widgets} compressão")
         compressão_imagem_svd(imagem_array, proporcao_k, tipo_imagem, salvar)
 
