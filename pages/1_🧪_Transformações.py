@@ -20,7 +20,7 @@ with st.container():
     imagem_teste_array = np.array(imagem_teste)
     
     # Opções de transformação
-    transformacao_teste = st.selectbox("Escolha a transformação para o teste:", ["Nenhum", "Comprimir imagem", "Contorno Imagem", "Cor Negativa", 
+    transformacao_teste = st.selectbox("Escolha a transformação para o teste:", ["Nenhum", "Comprimir Imagem", "Contorno Imagem", "Cor Negativa", 
                                                                                 "Escurecer Imagem", "Filtrar Cor", "Filtro Blur","Filtro Cimento", 
                                                                                 "Filtro Frio", "Filtro Quente","Filtro Sépia", "Imagem Preto e Branco", 
                                                                                 "Inverter Imagem",  "Repetir Imagem", "Redimensionar Imagem", 
