@@ -107,12 +107,11 @@ def redimensionar_imagem(imagem_array, altura, largura, salvar=False, apenas_sal
 
     if apenas_salvamento == True:
         imagem_redimensionada.save("imagem_resultado.png")
-    
-    centralize_widget(st.image, imagem_redimensionada, caption="Imagem Alterada", width=377)
-    
     elif salvar == True:
         imagem_redimensionada.save("imagem_resultado.png")
-
+        
+    centralize_widget(st.image, imagem_redimensionada, caption="Imagem Alterada", width=377)
+    
 
 def filtro_blur(imagem_array, qnt_blur, salvar=False):
     redimensionar_imagem(imagem_array, imagem_array.shape[0] / qnt_blur, imagem_array.shape[1] / qnt_blur, apenas_salvamento=True)
