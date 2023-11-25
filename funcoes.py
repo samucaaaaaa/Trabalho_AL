@@ -106,7 +106,7 @@ def redimensionar_imagem(imagem_array, altura, largura, salvar=False, apenas_sal
     imagem_redimensionada = Image.fromarray(imagem_redimensionada_array.astype("uint8"))
 
     if apenas_salvamento == True:
-        imagem_redimensionada.save("imagem_resultado.png")
+        return imagem_redimensionada.save("imagem_resultado.png")
     elif salvar == True:
         imagem_redimensionada.save("imagem_resultado.png")
         
